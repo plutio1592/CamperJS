@@ -1,2 +1,0 @@
-# CamperJS
-ProJect CamperJS
