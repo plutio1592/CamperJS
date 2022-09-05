@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setdb": "npx sequelize db:drop && npx sequelize db:create && npx sequelize-cli db:migrate",
+    "testdb": "node ./config/database.js",
+    "api1": "node ../server/api/campingAPI.js",
+    "api2": "node ../server/api/campingImageUrlAPI.js"
   },
   "repository": {
     "type": "git",

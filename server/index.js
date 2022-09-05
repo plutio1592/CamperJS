@@ -1,14 +1,27 @@
+require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
-const path = require('path');
-
 const app = express();
+dbConfig = require('./config/database.js');
+const conn = dbConfig.init();
+dbConfig.connect(conn);
 
-app.set('port', process.env.PORT || 4002);
+app.use(express.json());
+//json 형태 데이터 해석
+app.use(express.urlencoded({ extended: false }));
+//x-www-form-urlencoded 형태 데이터 해석
+//참고자료 https://kirkim.github.io/javascript/2021/10/16/body_parser.html
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-})
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS', 'PATCH', 'DELETE'],
+  }),
+);
 
-app.listen(app.get('port'), () => {
-  console.log(app.get('port'), '열림')
-})
+const PORT = process.env.DATABASE_PORT || 4002;
+
+app.listen(PORT, () => console.log(PORT + '포트로 서버 가동'));
