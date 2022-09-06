@@ -8,7 +8,7 @@ mysql 유저와 패스워드 입력 필요
 {
   "development": {
     "username": "root",
-    "password": "71031780",
+    "password": "",
     "database": "camper_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
