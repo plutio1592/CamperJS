@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setdb": "npx sequelize db:drop && npx sequelize db:create && npx sequelize-cli db:migrate",
+    "setdb": "npx sequelize db:drop && npx sequelize db:create && npx sequelize-cli db:migrate && node ../server/api/campingAPI.js && node ../server/api/campingImageUrlAPI.js && node ../server/api/campingImageUrlAPI2.js",
     "testdb": "node ./config/database.js",
-    "api1": "node ../server/api/campingAPI.js",
-    "api2": "node ../server/api/campingImageUrlAPI.js"
+    "api": "node ../server/api/campingAPI.js && node ../server/api/campingImageUrlAPI.js && node ../server/api/campingImageUrlAPI2.js",
+    "api2": "node ../server/api/campingImageUrlAPI.js && node ../server/api/campingImageUrlAPI2.js"
   },
   "repository": {
     "type": "git",

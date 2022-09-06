@@ -75,6 +75,8 @@ request1(options1, async function (error, response, body) {
     }
     campingCreate()
     .then(() => console.log('✅ Create Camping Table Data Save success!'))
+    .then(() => console.log('Image API를 불러오는 중이니 임의로 터미널을 종료하지 마세요'))
     .catch(err => console.log(err))
+    .then(setTimeout(() => 5000))
   }
   )

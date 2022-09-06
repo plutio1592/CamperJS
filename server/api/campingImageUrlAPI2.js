@@ -1,17 +1,19 @@
 const Sequelize = require('sequelize');
-const request2 = require('request');
+const request3 = require('request');
 const {campingImageURL, camping} = require('../models')
 const numOfRowsURL = 10;
-const ServiceKey2 = 'tjd3J%2FCRFrwtqiIbdGdanWxcjxxoYDqL5zSP76T1Mk3X61F000rbIH6I6DoAUDrdC%2FFpJCuZqFEpuGVYn%2FRn3w%3D%3D';
-const contentId2 = camping.findAll({raw: true, attributes: ['contentId']}).then((result) => {
-  for(let j = 1600; j < 3207; j++) {
-    const options2 = {
+const ServiceKey3 = 'tjd3J%2FCRFrwtqiIbdGdanWxcjxxoYDqL5zSP76T1Mk3X61F000rbIH6I6DoAUDrdC%2FFpJCuZqFEpuGVYn%2FRn3w%3D%3D';
+const contentId2 = camping.findAll({raw: true, attributes: ['contentId']}).then((result2) => {
+  for(let k = 1600; k < 3207; k++) {
+    // console.log(`${k}번 ${result2[k].contentId}`)
+
+    const options3 = {
           'method': 'GET',
-          'url': `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/imageList?ServiceKey=${ServiceKey2}&numOfRows=${numOfRowsURL}&MobileOS=ETC&MobileApp=AppTest&contentId=${result[j].contentId}&_type=json`,
+          'url': `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/imageList?ServiceKey=${ServiceKey3}&numOfRows=${numOfRowsURL}&MobileOS=ETC&MobileApp=AppTest&contentId=${result2[k].contentId}&_type=json`,
           'headers': {
           }
         };
-        request2(options2, function (error, response, body) {
+        request3(options3, function (error, response, body) {
           if (error) throw new Error(error);
           //   console.log(response.body);
           let info = JSON.parse(body);
@@ -39,7 +41,5 @@ const contentId2 = camping.findAll({raw: true, attributes: ['contentId']}).then(
       )
     }
   }
-  
   )
   .then(setTimeout(() => (console.log("ImageURL API 불러오는중..."), 5000)))
-

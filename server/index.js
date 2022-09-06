@@ -24,4 +24,4 @@ app.use(
 
 const PORT = process.env.DATABASE_PORT || 4002;
 
-app.listen(PORT, () => console.log(PORT + '포트로 서버 가동'));
+app.listen(PORT, () => console.log(PORT + '포트로 서버 시작'));

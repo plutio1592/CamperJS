@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   campingImageURL.init({
     contentId: DataTypes.STRING,
-    imageUrl: DataTypes.STRING
+    imageUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'campingImageURL',
