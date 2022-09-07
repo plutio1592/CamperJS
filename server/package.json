@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "setdb": "npx sequelize db:drop && npx sequelize db:create && npx sequelize-cli db:migrate && node ../server/api/campingAPI.js && node ../server/api/campingImageUrlAPI.js && node ../server/api/campingImageUrlAPI2.js",
     "testdb": "node ./config/database.js",

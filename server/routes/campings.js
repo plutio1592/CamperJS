@@ -1,6 +1,31 @@
-const router = require('express').Router();
-const controller = require('../controllers/campings/campings')
+const express = require('express')
+const sequelize = require('sequelize');
+const {campingImageURL, camping} = require('../models')
 
-router.get('/', controller.campings.get)
+const router = express.Router()
 
-module.exports = router;
+router.route('/')
+  .get(async (req, res, next) => {
+    try {
+      const campings = await camping.findAll({
+      })
+      res.json(campings)
+    }
+    catch (err) {
+      console.error(err)
+      next(err)
+    }
+  })
+  // .get(async (req, res, next) => {
+  //   try {
+  //     const campingImageURLs = await campingImageURL.findAll({
+  //     })
+  //     res.json(campingImageURLs)
+  //   }
+  //   catch (err) {
+  //     console.error(err)
+  //     next(err)
+  //   }
+  // })
+
+  module.exports = router

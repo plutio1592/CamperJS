@@ -4,7 +4,8 @@ const express = require('express');
 const app = express();
 dbConfig = require('./config/database.js');
 const conn = dbConfig.init();
-const indexRouter = require('./routes');
+const indexRouter = require('./routes/index');
+const campingRouter = require('./routes/campings')
 dbConfig.connect(conn);
 
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use(
 );
 
 app.use('/',indexRouter)
+app.use('/camping', campingRouter)
 
 const PORT = process.env.DATABASE_PORT || 4002;
 
