@@ -66,9 +66,9 @@ request1(options1, async function (error, response, body) {
         clturEvent: info.response.body.items.item[i].clturEvent,
         eqpmnLendCl: info.response.body.items.item[i].eqpmnLendCl,
         animalCmgCl: info.response.body.items.item[i].animalCmgCl,
-        tourEraCl: info.response.body.items.item[i].tourEraCl,
-        ImageUrl: info.response.body.items.item[i].ImageUrl,
-        charge: info.response.body.items.item[i].charge
+        tourEraCl: info.response.body.items.item[i].tourEraCl
+        // ImageUrl: info.response.body.items.item[i].ImageUrl,
+        // charge: info.response.body.items.item[i].charge
         }
         )
       }

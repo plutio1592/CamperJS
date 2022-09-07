@@ -4,7 +4,7 @@ const {campingImageURL, camping} = require('../models')
 const numOfRowsURL = 10;
 const ServiceKey2 = 'tjd3J%2FCRFrwtqiIbdGdanWxcjxxoYDqL5zSP76T1Mk3X61F000rbIH6I6DoAUDrdC%2FFpJCuZqFEpuGVYn%2FRn3w%3D%3D';
 const contentId2 = camping.findAll({raw: true, attributes: ['contentId']}).then((result) => {
-  for(let j = 1600; j < 3207; j++) {
+  for(let j = 0; j < 1600; j++) {
     const options2 = {
           'method': 'GET',
           'url': `https://api.visitkorea.or.kr/openapi/service/rest/GoCamping/imageList?ServiceKey=${ServiceKey2}&numOfRows=${numOfRowsURL}&MobileOS=ETC&MobileApp=AppTest&contentId=${result[j].contentId}&_type=json`,
