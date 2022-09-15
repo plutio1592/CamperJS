@@ -140,12 +140,6 @@ module.exports = {
       tourEraCl: {
         type: Sequelize.STRING
       },
-      // ImageUrl: {
-      //   type: Sequelize.STRING
-      // },
-      // charge: {
-      //   type: Sequelize.STRING
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

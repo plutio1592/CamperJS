@@ -8,6 +8,13 @@ router.route('/')
   .get(async (req, res, next) => {
     try {
       const campings = await camping.findAll({
+        // include: [{
+        //   model: campingImageURL,
+        //   attributes: ['id'],
+        //   where: {
+        //     id: id,
+        //   }
+        // }]
       })
       res.json(campings)
     }
