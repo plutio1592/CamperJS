@@ -2,11 +2,11 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const campingRouter = require('./controllers/camperDB/campings');
+const userRouter = require('./controllers/camperDB/users');
+const imageUrlRouter = require('./controllers/camperDB/campingImageUrl')
 dbConfig = require('./config/database.js');
 const conn = dbConfig.init();
-const indexRouter = require('./routes/index');
-const campingRouter = require('./routes/campings');
-const userRouter = require('./routes/users');
 dbConfig.connect(conn);
 
 app.use(express.json());
@@ -25,9 +25,11 @@ app.use(
   }),
 );
 
-app.use('/',indexRouter)
+
 app.use('/camping', campingRouter)
 app.use('/user', userRouter)
+app.use('/imageurl', imageUrlRouter)
+
 
 const PORT = process.env.DATABASE_PORT || 4002;
 

@@ -1,6 +1,5 @@
 const express = require('express')
-const sequelize = require('sequelize');
-const {campingImageURL, camping, user} = require('../models');
+const {user} = require('../../models');
 
 const router = express.Router()
 
@@ -24,5 +23,5 @@ router.route('/')
       next(err)
     }
   })
-
+//DB 회원정보 암호화 고려
   module.exports = router

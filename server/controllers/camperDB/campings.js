@@ -1,6 +1,5 @@
 const express = require('express')
-const sequelize = require('sequelize');
-const {campingImageURL, camping} = require('../models')
+const {camping} = require('../../models')
 
 const router = express.Router()
 
@@ -23,16 +22,5 @@ router.route('/')
       next(err)
     }
   })
-  // .get(async (req, res, next) => {
-  //   try {
-  //     const campingImageURLs = await campingImageURL.findAll({
-  //     })
-  //     res.json(campingImageURLs)
-  //   }
-  //   catch (err) {
-  //     console.error(err)
-  //     next(err)
-  //   }
-  // })
 
   module.exports = router
