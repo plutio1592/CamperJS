@@ -1,5 +1,5 @@
 const express = require('express')
-const {camping} = require('../../models')
+const {camping} = require('../models')
 
 const router = express.Router()
 

@@ -1,7 +1,7 @@
 const express = require('express')
 // const sequelize = require('sequelize');
 // const {campingImageURL, camping} = require('../models')
-dbConfig = require('../../config/database');
+dbConfig = require('../config/database');
 const conn = dbConfig.init();
 dbConfig.connect(conn);
 
