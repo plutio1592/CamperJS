@@ -14,14 +14,14 @@ import {
   nameValidator,
   emailValidator,
   phoneValidator,
-} from '../utils/validation';
+} from '../utils/Validation.js';
 
 // import Google from '../Google';
 // import Kakao from '../Kakao';
 // import Naver from '../Naver';
 
 import '../styles/signUp/SignUp.css';
-import CloseButton from '../CloseButton';
+import CloseButton from './CloseButton';
 
 function SignUp ({ handleCloseSignUpModal }) {
   const dispatch = useDispatch();
