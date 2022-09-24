@@ -25,7 +25,7 @@
   - 데이터베이스 선택
     - use camper_db;
 </br>
-  - source <Camper_DB.sql 파일 경로> 입력
+  - source <본인의 testdb.sql 파일 경로> 입력
     - ex) source C:\JavaProJect\CamperJS\server\testdb.sql
 
 ※. mysql 오류로 인해 기존 파일명 Camper_DB.sql → testdb.sql로 변경됨
