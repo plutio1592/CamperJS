@@ -13,19 +13,26 @@
 </br>
 </br>
 
-### Camper_DB 파일 활용 방법 (API 오류 발생 시 활용)
-- mysql WorkBench 활용
-  - https://defacto-standard.tistory.com/127
+### tsetdb.sql 파일 활용 방법 (API 오류 발생 시 활용)
+※. testdb.sql 파일을 사용할 경우 첫 DB 생성 시 npm run resetdb 입력 필수!
+</br>
+</br>
+  - mysql WorkBench 활용
+    - https://defacto-standard.tistory.com/127
 </br>
 </br>
 - mysql 터미널 활용
   - mysql 터미널 접속
-    - ex) mysql -u root -p 1234
+    - ex ) mysql -u root -p 1234
 </br>
   - 데이터베이스 선택
     - use camper_db;
 </br>
   - source <본인의 testdb.sql 파일 경로> 입력
-    - ex) source C:\JavaProJect\CamperJS\server\testdb.sql
+    - ex ) source C:\JavaProJect\CamperJS\server\testdb.sql
+
+</br>
 
 ※. mysql 오류로 인해 기존 파일명 Camper_DB.sql → testdb.sql로 변경됨
+
+</br>
