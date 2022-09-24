@@ -20,9 +20,12 @@
 </br>
 - mysql 터미널 활용
   - mysql 터미널 접속
-  - ex) mysql -u root -p 1234
+    - ex) mysql -u root -p 1234
+</br>
+  - 데이터베이스 선택
+    - use camper_db;
 </br>
   - source <Camper_DB.sql 파일 경로> 입력
-  - ex) source C:\JavaProJect\CamperJS\server\Camper_DB.sql
+    - ex) source C:\JavaProJect\CamperJS\server\testdb.sql
 
-
+※. mysql 오류로 인해 기존 파일명 Camper_DB.sql → testdb.sql로 변경됨
