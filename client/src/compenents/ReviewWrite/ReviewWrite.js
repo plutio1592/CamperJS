@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 96%;
-  height: 14rem;
+  height: 20rem;
 
   border-radius: 0.5rem;
   overflow-y: auto;

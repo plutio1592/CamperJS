@@ -12,6 +12,8 @@ export const Detailpage = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  border: 20px solid red;
+  top: 100px;
 `;
 // display flex 적용
 // 방향 설정 아래로
@@ -28,6 +30,7 @@ export const HeaderContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 3;
+  border: 2px solid blue;
 `;
 //border-bottom: 0.063rem solid #e0dde1; 박스 그림자 효과
 //justify-content: center; 가운데 정렬
@@ -46,15 +49,23 @@ export const HeaderContainer = styled.div`
 //   left: 0;
 // `;
 
-export const DetailMainContainer = styled.div``;
+export const DetailMainContainer = styled.div`
+  height: 60rem;
+  width: 100%;
+  border: 2px solid black;
+`;
 
-export const ReviewWriteContainer = styled.div``;
-
-export const ReviewTabContainer = styled.div``;
-
-export const BillContainer = styled.div`
+export const ReviewWriteContainer = styled.div`
+  height: 60rem;
   width: 100%;
 `;
+
+export const ReviewTabContainer = styled.div`
+  height: 60rem;
+  width: 100%;
+`;
+
+export const BillContainer = styled.div``;
 
 export const FooterContainer = styled.div`
   height: 5rem;
@@ -82,15 +93,15 @@ function Mainpage() {
       <DetailMainContainer>
         <DetailMain />
       </DetailMainContainer>
+      {/* <ReviewWriteContainer>
+        <ReviewWrite />
+      </ReviewWriteContainer> */}
+      {/* <ReviewTabContainer>
+        <ReviewTab />
+      </ReviewTabContainer> */}
       <BillContainer>
         <Bill />
       </BillContainer>
-      <ReviewWriteContainer>
-        <ReviewWrite />
-      </ReviewWriteContainer>
-      <ReviewTabContainer>
-        <ReviewTab />
-      </ReviewTabContainer>
       <FooterContainer>
         <Footer />
       </FooterContainer>
