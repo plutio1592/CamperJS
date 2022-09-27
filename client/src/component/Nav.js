@@ -8,16 +8,19 @@ function Nav() {
   const dispatch = useDispatch();
   // const userState = useSelector((state) => state.userReducer);
   const modalState = useSelector((state) => state.modalReducer);
-  const { isOpenSignUp } = modalState;
+  // const { isOpenSignUp } = modalState;
+  const handleCloseSignUpModal = () => {
+    dispatch(setSignUpModal(false));
+  };
 
   return (
     <>
-      {isOpenSignUp? <SignUpModal /> : null}
+      {/*{isOpenSignUp? <SignUpModal /> : null}*/}
       <div className='nav'>
         <button
           type='button'
           aria-hidden='true'
-          onClick={() => dispatch(setSignUpModal(true))}
+          onClick={(handleCloseSignUpModal)}
           className='signup'
         >
           회원가입

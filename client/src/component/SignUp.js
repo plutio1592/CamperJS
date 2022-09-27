@@ -3,10 +3,14 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setLoginState,
-        setSignUpModal,
-        setLoginModal,
-        setEmailCheckModal,} 
+          SetName, } 
         from '../actions/userAction';
+
+import { setLoginModal,
+          setSignUpModal,
+          setIsLogin,
+          setEmailCheckModal }
+          from '../actions/modalAction'
 
 import {
   idValidator,
@@ -20,7 +24,7 @@ import {
 // import Kakao from '../Kakao';
 // import Naver from '../Naver';
 
-import '../styles/signUp/SignUp.css';
+// import '../styles/signUp/SignUp.css';
 import CloseButton from './CloseButton';
 
 function SignUp ({ handleCloseSignUpModal }) {
