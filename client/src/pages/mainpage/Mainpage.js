@@ -45,8 +45,7 @@ export const TagContainer = styled.div`
 
 export const MainContainer = styled.div`
   width: 100%;
-  border: 2px solid black;
-  height: 23rem;
+  height: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +74,7 @@ export const FooterContainer = styled.div`
 
 /////////////////////////////////////////////////////////////////////////////////
 
-function Mainpage() {
+function Mainpage({contentId,contentIdImg}) {
   return (
     <MainPage>
       <HeaderContainer>
@@ -85,7 +84,7 @@ function Mainpage() {
         <Tags />
       </TagContainer>
       <MainContainer>
-        <Main />
+        <Main contentId={contentId} contentIdImg={contentIdImg}/>
       </MainContainer>
       <FooterContainer>
         <Footer />
