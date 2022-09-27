@@ -6,7 +6,8 @@ const {user} = require('../models')
 
 const router = express.Router()
 
-router.post('/join', async (req, res, next) => {
+//로컬 회원가입
+router.post('/signup', async (req, res, next) => {
   // const { username, password, name, email, phone } = req.body;
 
   try {
@@ -41,35 +42,20 @@ router.post('/join', async (req, res, next) => {
     })
     res.status(201).send("회원가입 완료")
 
-    // const exUser = await user.findOne({ where: { email } })
-    // if (exUser) {
-    //   return res.redirect('/join?error=exist')
-    // }
-
-    // const hash = await bcrypt.hash(password, 12)
-    // await user.create({
-    //   email,
-    //   password: hash,
-    //   username,
-    //   name,
-    //   phone
-    // })
-    // res.status(201).send("회원가입 완료")
-
   } catch (err) {
     console.error(err)
     return next(err)
   }
 })
 
+//로컬 로그인
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (authError, users, info) => {
-    if (authError) {
-      console.error(authError)
-      return next(authError)
+  passport.authenticate('local',(err, users, info) => {
+    if (err) {
+      console.error(err)
+      return next(err)
     }
-
-    if(users) {
+    if (info) {
       return res.status(401).send(info.reason)
     }
     return req.login(users, async (loginErr) => {
@@ -79,21 +65,6 @@ router.post('/login', (req, res, next) => {
       }
       return res.status(200).json(users)
     })
-    // if(authError) {
-    //   console.error(authError)
-    //   return next(authError)
-    // }
-    // if(!users) {
-    //   return res.redirect(`/?loginError=${info.message}`)
-    // }
-    // return req.login(users, loginError => {
-    //   if (loginError) {
-    //     console.error(loginError)
-    //     return next(loginError)
-    //   }
-    //   return res.redirect('/')
-    // })
-
   })(req, res, next)
 })
 

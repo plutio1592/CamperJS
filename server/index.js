@@ -7,10 +7,8 @@ require('dotenv').config();
 dbConfig = require('./config/database.js');
 const conn = dbConfig.init();
 dbConfig.connect(conn);
-// import * as expressSession from "express-session"
 
 const campingRouter = require('./routes/campings');
-// const userRouter = require('./routes/userSignUp');
 const imageUrlRouter = require('./routes/campingImageUrl')
 const passportConfig = require('./routes/passport')
 const authRouter = require('./routes/auth')
@@ -38,26 +36,19 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+      cookie: {
+        httpOnly: true, //http만 사용
+        secure: false,
+      },
   }))
-  // app.use(session({
-  //   saveUninitialized: false,
-  //   resave: false,
-  //   secret: process.env.COOKIE_SECRET,
-  //   cookie: {
-  //     httpOnly: true,
-  //     secure: false,
-  //   },
-  // }),
-  // )
+
   passportConfig()
 app.use(passport.initialize())
 app.use(passport.session())
 
-// app.use(expressSession)
 app.use('/camping', campingRouter)
-// app.use('/user', userRouter)
-app.use('/auth', authRouter)
 app.use('/imageurl', imageUrlRouter)
+app.use('/auth', authRouter)
 
 const PORT = process.env.DATABASE_PORT || 4002;
 app.listen(PORT, () => console.log(PORT + '포트로 서버 시작'));
