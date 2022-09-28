@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './component/Nav'
+import { SignUpModal } from './component/modal/SignUpModal';
 import './App.css';
 import { useState, useEffect } from "react";
 import "./App.css";
@@ -37,42 +37,6 @@ axios
 
 
 function App() {
-  const [contentId, setContentId] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [contentIdImg, setContentIdImg] = useState(null);
-
-  const fetchContentId = async () => {
-    try {
-      setError(null);
-      setContentId(contentId);
-      setLoading(true);
-      const response = await axios.get("http://localhost:4002/camping");
-      setContentId(response.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
-
-  const fetchContentIdImg = async () => {
-    try {
-      setError(null);
-      setContentIdImg(contentIdImg);
-      setLoading(true);
-      const responseImg = await axios.get("http://localhost:4002/imageurl");
-      setContentIdImg(responseImg.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchContentId();
-    fetchContentIdImg();
-  }, []);
-
   return (
     <div>
     <BrowserRouter>
@@ -89,6 +53,13 @@ function App() {
         <div className='nav'>
           {/*<button type='button' aria-hidden='true' class='signup'>회원가입</button>*/}
           <Nav />
+        </div>
+      </div>
+    </>
+    <>
+      <div className="App">
+        <div className='box'>
+          <div classNmae='sub_title'>SignUpModal</div>
         </div>
       </div>
     </>
