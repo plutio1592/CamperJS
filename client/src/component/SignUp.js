@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 // axios 설치함
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setLoginState,
-        setSignUpModal,
-        setLoginModal,
-        setEmailCheckModal,} 
-        from '../actions/userAction';
+import {  setSignUpModal,
+          setLoginModal,
+          setEmailCheckModal,} 
+        from '../actions/modalAction';
+import { setLoginState } from '../actions/userAction'
 
 import {
   idValidator,
@@ -14,14 +14,14 @@ import {
   nameValidator,
   emailValidator,
   phoneValidator,
-} from '../utils/validation';
+} from '../utils/Validation';
 
 // import Google from '../Google';
 // import Kakao from '../Kakao';
 // import Naver from '../Naver';
 
 import '../styles/signUp/SignUp.css';
-import CloseButton from '../CloseButton';
+import CloseButton from './CloseButton';
 
 function SignUp ({ handleCloseSignUpModal }) {
   const dispatch = useDispatch();

@@ -16,5 +16,3 @@ export const SetName = (nameString) => ({
     name: nameString,
   },
 });
-
-export const 
