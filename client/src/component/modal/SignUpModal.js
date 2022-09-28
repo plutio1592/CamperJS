@@ -4,9 +4,12 @@ import { useDispatch } from 'react-redux';
 import SignUp from '../SignUp';
 import { setSignUpModal } from '../../actions/modalAction';
 import { stopScroll, clearStopScroll } from '../../utils/ModalScrollPrevent';
+import '/home/hedaa/Desktop/project/CamperJS/client/src/styles/signUp/SignUpModal.css'
+import styled from 'styled-components';
 
 function SignUpModal() {
   const dispatch =  useDispatch();
+  // const [isOpen, setIsOpen] = useState(false);
 
   // 스크롤 방지
   useEffect(() => {
@@ -20,9 +23,22 @@ function SignUpModal() {
     dispatch(setSignUpModal(false));
   };
 
-  const LoginSignUpChange = (e) => {
-    const login = document.getElementById('SignUpModal_Login_change');
-    const signup = documet.getElementById('SignUpModal_SignUp_change');
-  }
+  return (
+    <div
+      aria-hidden='true'
+      onClick={handleCloseSignUpModal}
+      className='SignUpModal_container'
+    >
+      <div
+        aria-hidden='true'
+        onClick={(e) => e.stopPropagation()}  
+      >
+        <div className='signUpModal_signup'>
+          <SignUp handleCloseSignUpModal={handleCloseSignUpModal} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
+export default SignUpModal;
