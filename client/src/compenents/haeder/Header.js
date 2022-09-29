@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
+import SignUpButton from "../../component/SignUpButton";
+
 
 export const HeaderItemContainer = styled.div`
 
@@ -171,6 +173,16 @@ export const UserLogin = styled.button`
 }
 `;
 
+export const UserSignUp = styled.button`
+    display: flex;
+    width: 5rem;
+    height: 3rem;
+    background: purple;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 15px;
+`
+
 function Header() {
     const mainpage = ()=>{
         // 새창으로 띄우기
@@ -179,27 +191,31 @@ function Header() {
         window.location.assign('https://www.google.com/')
     }
     return (
-        <HeaderItemContainer>
-            <Logo onClick={mainpage}>
-                    <LogoImg src='../별보러가자.ico' alt='logo' />
-                    <LogoImg2 src='../별보러가자2.ico' alt='logo' />
-                    <LogoTitle src="../logotitle.ico" alt="LogoTitle" />
-            </Logo>
-            <SearchContainer>
-                <SearchBar>
-                    <div>어디든지</div>
-                    <div>주말에</div>
-                    <div>게스트추가</div>
-                    <img src="../searchBtn.svg" alt="search" />
-                </SearchBar>
-            </SearchContainer>
-            <UserContainer>
-                <UserLogin>
-                    <MdList size="30"color="gray"/>
-                    <MdAccountCircle size="40"color="gray"/>
-                </UserLogin>
-            </UserContainer>
-        </HeaderItemContainer>
+        <>
+            <HeaderItemContainer>
+                <Logo onClick={mainpage}>
+                        <LogoImg src='../별보러가자.ico' alt='logo' />
+                        <LogoImg2 src='../별보러가자2.ico' alt='logo' />
+                        <LogoTitle src="../logotitle.ico" alt="LogoTitle" />
+                </Logo>
+                <SearchContainer>
+                    <SearchBar>
+                        <div>어디든지</div>
+                        <div>주말에</div>
+                        <div>게스트추가</div>
+                        <img src="../searchBtn.svg" alt="search" />
+                    </SearchBar>
+                </SearchContainer>
+                <UserContainer>
+                {/* <SignUpButton />
+                    <UserLogin>
+                        <MdList size="30"color="gray"/>
+                        <MdAccountCircle size="40"color="gray"/>
+                    </UserLogin> */}
+                    <SignUpButton />
+                </UserContainer>
+            </HeaderItemContainer>
+        </>
     )
 };
 
