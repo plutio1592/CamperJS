@@ -25,13 +25,6 @@ import axios from "axios";
 //   );
 // }
 
-axios
-  .get("http://localhost:4002/camping")
-  .catch(function (error) {})
-  .then((response) => {
-    // console.log(response.data);
-  });
-
 function App() {
   const [contentId, setContentId] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -72,9 +65,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Mainpage 
-          contentId = {contentId}
-          contentIdImg = {contentIdImg}/>} />
+        <Route
+          path="/"
+          element={
+            <Mainpage contentId={contentId} contentIdImg={contentIdImg} />
+          }
+        />
         {/* <Route path="/detailpage" element={<Detailpage />} /> */}
         <Route path="/detailpage2" element={<Detailpage2 />} />
       </Routes>
