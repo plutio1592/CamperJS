@@ -1,6 +1,6 @@
 const passport = require('passport');
-const googleStrategy = require('passport-google').Strategy;
-const { User } = require('../models');
+const googleStrategy = require('passport-google-oauth20').Strategy;
+const { user } = require('../../models');
 
 module.exports = (app) => {
     app.use(passport.initialize()); // passport를 초기화 하기 위해서 passport.initialize 미들웨어 사용
@@ -15,20 +15,20 @@ module.exports = (app) => {
         // profile: 카카오가 보내준 유저 정보. profile의 정보를 바탕으로 회원가입
         async (accessToken, refreshToken, profile, done) => {
             try {
-                const exUser = await User.findOne({
+                const exuser = await user.findOne({
                     // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                     where: { snsId: profile.id, /*providerType: 'google'*/ },
                 });
                 // 이미 가입된 카카오 프로필이면 성공
-                if (exUser) {
-                    done(null, exUser); // 로그인 인증 완료
+                if (exuser) {
+                    done(null, exuser); // 로그인 인증 완료
                 } else {
                     // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
-                    const newUser = await User.create({
+                    const newUser = await user.create({
                         email: profile._json && profile._json.google_account_email,
-                        nickname: profile.displayName,
-                        snsId: profile.id,
-                        providerType: 'google',
+                        name: profile.displayName,
+                        username: profile.id,
+                        loginType: 'google',
                     });
                     done(null, newUser); // 회원가입하고 로그인 인증 완료
                 }
