@@ -1,12 +1,5 @@
 const cors = require('cors');
 const express = require('express');
-//const app = express();
-// const campingRouter = require('./controllers/camperDB/campings');
-// const userRouter = require('./controllers/camperDB/users');
-// const imageUrlRouter = require('./controllers/camperDB/campingImageUrl')
-// const campingRouter = require('./routes/campings');
-// const userRouter = require('./routes/userSignUp');
-// const imageUrlRouter = require('./routes/campingImageUrl')
 const passport = require('passport')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
@@ -55,15 +48,6 @@ app.use(passport.session())
 
 app.use('/camping', campingRouter)
 app.use('/imageurl', imageUrlRouter)
-
-// app.use(cookieParser(process.env.COOKIE_SECRET))
-// app.use(session({
-//   saveUninitialized: false,
-//   resave: false,
-//   secret: process.env.COOKIE_SECRET,
-// }))
-// app.use(passport.initialize())
-// app.use(passport.session())
 app.use('/auth', authRouter)
 
 const PORT = process.env.DATABASE_PORT || 4002;
