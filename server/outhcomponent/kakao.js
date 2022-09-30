@@ -1,6 +1,6 @@
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const { User } = require('../models');
+const { user } = require('../models');
 
 module.exports = (app) => {
     app.use(passport.initialize()); // passport를 초기화 하기 위해서 passport.initialize 미들웨어 사용
@@ -15,7 +15,7 @@ module.exports = (app) => {
         // profile: 카카오가 보내준 유저 정보. profile의 정보를 바탕으로 회원가입
         async (accessToken, refreshToken, profile, done) => {
             try {
-                const exUser = await User.findOne({
+                const exUser = await user.findOne({
                     // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                     where: { snsId: profile.id, /*providerType: 'kakao'*/ },
                 });
@@ -24,7 +24,7 @@ module.exports = (app) => {
                     done(null, exUser); // 로그인 인증 완료
                 } else {
                     // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
-                    const newUser = await User.create({
+                    const newUser = await user.create({
                         email: profile._json && profile._json.kakao_account_email,
                         nickname: profile.displayName,
                         snsId: profile.id,
