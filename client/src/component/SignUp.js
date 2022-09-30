@@ -2,22 +2,12 @@ import React, { useRef, useState } from 'react';
 // axios 설치함
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-<<<<<<< HEAD
 import {  setSignUpModal,
           setLoginModal,
-          setEmailCheckModal,} 
-        from '../actions/modalAction';
-import { setLoginState } from '../actions/userAction'
-=======
-import { setLoginState,
-          SetName, } 
-        from '../actions/userAction';
->>>>>>> c5195303b00abf2337a8730b53e6b2355ce5646d
-
-import { setLoginModal,
-          setSignUpModal,
+          setEmailCheckModal,
+          setLoginState,SetName, 
           setIsLogin,
-          setEmailCheckModal }
+           }
           from '../actions/modalAction'
 
 import {
@@ -26,21 +16,13 @@ import {
   nameValidator,
   emailValidator,
   phoneValidator,
-<<<<<<< HEAD
 } from '../utils/Validation';
-=======
-} from '../utils/Validation.js';
->>>>>>> c5195303b00abf2337a8730b53e6b2355ce5646d
 
 // import Google from '../Google';
 // import Kakao from '../Kakao';
 // import Naver from '../Naver';
 
-<<<<<<< HEAD
 import '../styles/signUp/SignUp.css';
-=======
-// import '../styles/signUp/SignUp.css';
->>>>>>> c5195303b00abf2337a8730b53e6b2355ce5646d
 import CloseButton from './CloseButton';
 
 function SignUp ({ handleCloseSignUpModal }) {
