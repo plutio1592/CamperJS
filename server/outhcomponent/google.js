@@ -1,6 +1,6 @@
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20').Strategy;
-const { user } = require('../../models');
+const { user } = require('../models');
 
 module.exports = (app) => {
     app.use(passport.initialize()); // passport를 초기화 하기 위해서 passport.initialize 미들웨어 사용
@@ -39,10 +39,10 @@ module.exports = (app) => {
         },
         ),
     );
-    passport.serializeUser((user,done)=>{ 
-        done(null,user);
-    });
-    passport.deserializeUser((user,done)=>{
-        done(null,user);
-    });
+    // passport.serializeUser((user,done)=>{ 
+    //     done(null,user);
+    // });
+    // passport.deserializeUser((user,done)=>{
+    //     done(null,user);
+    // });
 };
