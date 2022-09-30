@@ -1,5 +1,7 @@
 ### 데이터 베이스 초기설정
 1. npm run resetdb
+2. dbFinal.sql 파일로 등록
+
 
 ### dbFinal.sql 파일 활용 방법 (데이터베이스내 테이블 및 컬럼생성 & 값 추가)
 </br>
