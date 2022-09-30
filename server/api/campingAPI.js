@@ -2,10 +2,9 @@
 const Sequelize = require('sequelize');
 const {camping} = require('../models')
 
-
 const numOfRowsCamping1 = 3207;
 const pageNo = 1;
-const ServiceKey1 = 'tjd3J%2FCRFrwtqiIbdGdanWxcjxxoYDqL5zSP76T1Mk3X61F000rbIH6I6DoAUDrdC%2FFpJCuZqFEpuGVYn%2FRn3w%3D%3D';
+const ServiceKey1 = process.env.CAMPINGAPIKEY
 
 const request1 = require('request');
 const options1 = {

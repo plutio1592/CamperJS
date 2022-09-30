@@ -57,7 +57,8 @@ module.exports = (sequelize, DataTypes) => {
     clturEvent: DataTypes.STRING,
     eqpmnLendCl: DataTypes.STRING,
     animalCmgCl: DataTypes.STRING,
-    tourEraCl: DataTypes.STRING
+    tourEraCl: DataTypes.STRING,
+    imageUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'camping',
