@@ -30,6 +30,15 @@ router.post('/signup', async (req, res, next) => {
       return res.status(403).send('이미 사용중인 이메일입니다.')
     }
 
+    const searchDuplicatePhone = await user.findOne({
+      where: {
+        email: req.body.Phone,
+      }
+    })
+    if (searchDuplicatePhone) {
+      return res.status(403).send('이미 사용중인 번호입니다.')
+    }
+
     const hashedPassword = await bcrypt.hash(req.body.password, 12)
     await user.create({
       username: req.body.username,
@@ -68,10 +77,29 @@ router.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
+//로그아웃
 router.get('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
   res.redirect('/')
 })
+
+//로그인유지
+router.get('/', async (req, res, next) => {
+  try {
+    if (req.users) {
+    const users = await user.findOne({
+      where: {id: req.users.id},
+    })
+
+    return res.status(200).json(users)
+    // console.log(req.users.id)
+} else {
+  return res.status(200).json(null)
+}}
+catch (err) {
+  console.error(err)
+  return next(err)
+}})
 
 module.exports = router
