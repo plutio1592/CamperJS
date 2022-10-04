@@ -4,6 +4,7 @@ import Header from "../../compenents/haeder/Header";
 import Tags from "../../compenents/tags/Tags";
 import Main from "../../compenents/main/Main";
 
+
 export const MainPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,9 +73,13 @@ export const FooterContainer = styled.div`
   }
 `;
 
+export const TopButtonContainer = styled.div`
+
+`
 /////////////////////////////////////////////////////////////////////////////////
 
-function Mainpage({contentId,contentIdImg}) {
+function Mainpage({isLoading,contentId,contentIdImg}) {
+
   return (
     <MainPage>
       <HeaderContainer>
@@ -84,7 +89,7 @@ function Mainpage({contentId,contentIdImg}) {
         <Tags />
       </TagContainer>
       <MainContainer>
-        <Main contentId={contentId} contentIdImg={contentIdImg}/>
+        <Main isLoading={isLoading} contentId={contentId} contentIdImg={contentIdImg}/>
       </MainContainer>
       <FooterContainer>
         <Footer />

@@ -25,33 +25,27 @@ import axios from "axios";
 //   );
 // }
 
-axios
-  .get("http://localhost:4002/camping")
-  .catch(function (error) {})
-  .then((response) => {
-    // console.log(response.data);
-  });
 
 function App() {
   const [contentId, setContentId] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [contentIdImg, setContentIdImg] = useState(null);
 
-  const fetchContentId = async () => {
+  const fetchContentId = async() => {
     try {
       setError(null);
       setContentId(contentId);
       setLoading(true);
-      const response = await axios.get("http://localhost:4002/camping");
+      const response = await axios.get("http://localhost:4002/camping")
       setContentId(response.data);
     } catch (e) {
       setError(e);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-  const fetchContentIdImg = async () => {
+  const fetchContentIdImg = async() => {
     try {
       setError(null);
       setContentIdImg(contentIdImg);
@@ -60,8 +54,8 @@ function App() {
       setContentIdImg(responseImg.data);
     } catch (e) {
       setError(e);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -74,7 +68,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Mainpage 
           contentId = {contentId}
-          contentIdImg = {contentIdImg}/>} />
+          contentIdImg = {contentIdImg} 
+          isLoading={isLoading}/>} />
         {/* <Route path="/detailpage" element={<Detailpage />} /> */}
         <Route path="/detailpage2" element={<Detailpage2 />} />
       </Routes>
