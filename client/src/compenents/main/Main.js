@@ -26,17 +26,14 @@ const Wrapper = styled.div`
   
 `;
 
-function findImg(camping,contentIdImg){
-  if(!camping || !contentIdImg){
-    return
-  } else {
-    let url =  contentIdImg.find(el => el.contentId===`${camping.contentId}`)
-    if (!url) {return "img/image1.webp"}
-    else {return url[`group_concat(imageUrl)`]}
-  }
-}
+function findImg(imageUrl){
 
-function Main({isLoading,contentId,contentIdImg}) {
+    if (!imageUrl) {return "img/image1.webp"}
+    else {return imageUrl}
+  }
+
+
+function Main({isLoading,contentId}) {
   
   if (!contentId) {
     return (
@@ -56,13 +53,8 @@ function Main({isLoading,contentId,contentIdImg}) {
             return <Skeleton key={i} />;
           })
           :contentId.map((camping) => (
-          <Camping key={camping.contentId} camping = {camping} campingImg ={findImg(camping,contentIdImg)} />
-        ))}
-        {/* {new Array(60).fill(1).map((_, i) => {
-            return <Skeleton key={i} />;
-          })
-        } */}
-      
+          <Camping key={camping.contentId} camping = {camping} campingImg ={findImg(camping.imageUrl)} />
+        ))}     
       </Wrapper>
 
     )

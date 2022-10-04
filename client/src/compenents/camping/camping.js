@@ -61,13 +61,12 @@ function Camping({camping,campingImg}) {
   let navigate = useNavigate();
   
   const onClickMoveDVP = (contentId) => {
-    console.log(contentId);
-    navigate(`/Detailpage2/`, { state: camping });
+    navigate(`/Detailpage2/${contentId}`, { state: camping });
   };
 
       return(
         <Wrapper key={camping.contentId} onClick={()=>{onClickMoveDVP(camping.contentId)}}>
-               <img src={campingImg.split(',')[0]} loading="lazy"/>             
+               <img src={campingImg.split(',')[0]} loading="lazy" alt={camping.campingName}/>             
               <Description>
               <div className="title">
               <b>{camping.campingName}</b>

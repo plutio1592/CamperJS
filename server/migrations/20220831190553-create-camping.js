@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       contentId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       intro: {
         type: Sequelize.TEXT
@@ -139,6 +139,9 @@ module.exports = {
       },
       tourEraCl: {
         type: Sequelize.STRING
+      },
+      imageUrl: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

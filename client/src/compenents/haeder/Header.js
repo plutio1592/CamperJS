@@ -8,7 +8,7 @@ export const HeaderItemContainer = styled.div`
     height: 100%;
     justify-content: space-between;
     padding: 0 5% 0 5%;
-
+    background-color: white;
     @media screen and (max-width: 1200px) {
 
     }

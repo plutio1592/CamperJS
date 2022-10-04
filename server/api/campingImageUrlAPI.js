@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const request2 = require('request');
 const {campingImageURL, camping} = require('../models')
 const numOfRowsURL = 10;
-const ServiceKey2 = 'tjd3J%2FCRFrwtqiIbdGdanWxcjxxoYDqL5zSP76T1Mk3X61F000rbIH6I6DoAUDrdC%2FFpJCuZqFEpuGVYn%2FRn3w%3D%3D';
+const ServiceKey2 = process.env.CAMPINGAPIKEY;
 const contentId2 = camping.findAll({raw: true, attributes: ['contentId']}).then((result) => {
   for(let j = 0; j < 1600; j++) {
     const options2 = {

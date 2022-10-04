@@ -25,12 +25,10 @@ import axios from "axios";
 //   );
 // }
 
-
 function App() {
   const [contentId, setContentId] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [contentIdImg, setContentIdImg] = useState(null);
 
   const fetchContentId = async() => {
     try {
@@ -45,22 +43,8 @@ function App() {
     }
   };
 
-  const fetchContentIdImg = async() => {
-    try {
-      setError(null);
-      setContentIdImg(contentIdImg);
-      setLoading(true);
-      const responseImg = await axios.get("http://localhost:4002/imageurl");
-      setContentIdImg(responseImg.data);
-    } catch (e) {
-      setError(e);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     fetchContentId();
-    fetchContentIdImg();
   }, []);
 
   return (
@@ -68,10 +52,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Mainpage 
           contentId = {contentId}
-          contentIdImg = {contentIdImg} 
           isLoading={isLoading}/>} />
         {/* <Route path="/detailpage" element={<Detailpage />} /> */}
-        <Route path="/detailpage2" element={<Detailpage2 />} />
+        <Route path="/detailpage2/:contentId" element={<Detailpage2 />} />
       </Routes>
     </BrowserRouter>
   );

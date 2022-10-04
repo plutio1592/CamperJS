@@ -78,7 +78,7 @@ export const TopButtonContainer = styled.div`
 `
 /////////////////////////////////////////////////////////////////////////////////
 
-function Mainpage({isLoading,contentId,contentIdImg}) {
+function Mainpage({isLoading,contentId}) {
 
   return (
     <MainPage>
@@ -89,7 +89,7 @@ function Mainpage({isLoading,contentId,contentIdImg}) {
         <Tags />
       </TagContainer>
       <MainContainer>
-        <Main isLoading={isLoading} contentId={contentId} contentIdImg={contentIdImg}/>
+        <Main isLoading={isLoading} contentId={contentId} />
       </MainContainer>
       <FooterContainer>
         <Footer />

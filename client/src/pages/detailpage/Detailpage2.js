@@ -4,6 +4,7 @@ import Footer from "../../compenents/footer/Footer";
 import Header from "../../compenents/haeder/Header";
 import DetailMain from "../../compenents/detailmain/DetailMain";
 
+
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -49,6 +50,23 @@ export const DetailMainContainer = styled.div`
 //   }
 // `;
 
+export const FooterContainer = styled.div`
+  height: 5rem;
+  width: 100%;
+  background: #ffffff;
+  border-top: 0.063rem solid #e0dde1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  @media screen and (max-width: 768px) {
+    height: 4rem;
+  }
+`;
+
 function Detailpage2() {
   return (
     <Wrapper>
@@ -56,9 +74,11 @@ function Detailpage2() {
         <Header />
       </HeaderContainer>
       <DetailMainContainer>
-        {/* <div>asdadsfsd</div> */}
         <DetailMain />
       </DetailMainContainer>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </Wrapper>
   );
 }

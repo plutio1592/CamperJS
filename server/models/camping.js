@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   camping.init({
     campingName: DataTypes.STRING,
     lineIntro: DataTypes.STRING,
-    contentId: DataTypes.INTEGER,
+    contentId: DataTypes.STRING,
     intro: DataTypes.TEXT,
     bizrno: DataTypes.STRING,
     hvofBgnde: DataTypes.STRING,
@@ -57,7 +57,8 @@ module.exports = (sequelize, DataTypes) => {
     clturEvent: DataTypes.STRING,
     eqpmnLendCl: DataTypes.STRING,
     animalCmgCl: DataTypes.STRING,
-    tourEraCl: DataTypes.STRING
+    tourEraCl: DataTypes.STRING,
+    imageUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'camping',
