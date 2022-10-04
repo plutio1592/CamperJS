@@ -8,7 +8,7 @@ export const HeaderItemContainer = styled.div`
     height: 100%;
     justify-content: space-between;
     padding: 0 5% 0 5%;
-
+    background-color: white;
     @media screen and (max-width: 1200px) {
 
     }
@@ -176,7 +176,7 @@ function Header() {
         // 새창으로 띄우기
         // window.open("http://localhost:3000/")
         // 기존창 홈페이지로 보내기
-        window.location.assign('https://www.google.com/')
+        window.location.assign('http://localhost:3000/')
     }
     return (
         <HeaderItemContainer>

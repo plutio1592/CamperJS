@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Camping from "../camping/camping";
+import Skeleton from "../Skeleton/Skeleton";
+
 const Wrapper = styled.div`
   width: 100%;
   height: 60rem;
@@ -14,39 +16,48 @@ const Wrapper = styled.div`
   position: relative;
   top: 20rem;
   overflow-y: auto;
+  overflow-x: auto;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
 
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
+  
 `;
 
-function findImg(camping,contentIdImg){
-  let url =  contentIdImg.find(el => el.contentId===`${camping.contentId}`)
-  if (!url) {return "img/image1.webp"}
-  else {return url[`group_concat(imageUrl)`]}
-}
+function findImg(imageUrl){
 
-function Main({contentId,contentIdImg}) {
+    if (!imageUrl) {return "img/image1.webp"}
+    else {return imageUrl}
+  }
+
+
+function Main({isLoading,contentId}) {
   
   if (!contentId) {
     return (
-      <div>
-        <h1>campingdata roding...</h1>
-      </div>
+      <Wrapper>
+        {
+          new Array(60).fill(1).map((_, i) => {
+            return <Skeleton key={i} />;
+          })
+        }
+      </Wrapper>
     );
   } else {
     return(
       <Wrapper>
-        {contentId.map((camping) => (
-          <Camping key={camping.contentId} camping = {camping} campingImg ={findImg(camping,contentIdImg)} />
-        ))}
-      
+        {!isLoading 
+          ? new Array(60).fill(1).map((_, i) => {
+            return <Skeleton key={i} />;
+          })
+          :contentId.map((camping) => (
+          <Camping key={camping.contentId} camping = {camping} campingImg ={findImg(camping.imageUrl)} />
+        ))}     
       </Wrapper>
 
-)
-}
-};
-
+    )
+  };
+          }
 export default Main;

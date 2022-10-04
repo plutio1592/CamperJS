@@ -4,6 +4,7 @@ import AircoverModal from "../aircoverModal/AircoverModal";
 import styled from "styled-components";
 import { GiButterflyFlower, GiMountains, GiRiver } from "react-icons/gi";
 import { TbToolsKitchen, TbWifi } from "react-icons/tb";
+import { useLocation } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -63,7 +64,9 @@ export const AirCoverContainer = styled.div`
 
 const DetailMain = ({ aircoverModalHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { state } = useLocation();
+  const {campingName, intro} = state
+  console.log("🚀 ~ file: DetailMain.js ~ line 68 ~ DetailMain ~ state", state)
   // const openModalHandler = () => {
   //   setIsOpen(!isOpen);
   // };
@@ -73,7 +76,7 @@ const DetailMain = ({ aircoverModalHandler }) => {
       <Description>
         <TitleContainer>
           <div className="title">
-            <b>별이 보이는 감성충만 프라이빗 복층 Cosmos Room</b>
+            <b>{campingName}</b>
           </div>
           <div className="rating">
             ⭐ 4.97 · 후기 470개 · 슈퍼호스트 · Gimsatgat-myeon, Yeongweol,
@@ -111,11 +114,7 @@ const DetailMain = ({ aircoverModalHandler }) => {
         </AirCoverContainer>
         <AirCoverContainer>
           <div>
-            영월의 스테이하우스는 커플이 프라이빗하게 쉬기 좋은 객실입니다. 복층
-            구조로 되어있어 2층에 올라가면, 아늑하고 따뜻한 느낌의 객실에서
-            편안하게 즐기실 수 있습니다. 창밖으로 들리는 계곡물소리와 지저귀는
-            새소리 그리고 맑은 공기는 도시에서 지친 마음에 휴식을 주며 매일
-            청결하게 관리하는 침구는 편안한 잠자리를 제공합니다.
+          {intro}
           </div>
           <button>더보기 > </button>
         </AirCoverContainer>

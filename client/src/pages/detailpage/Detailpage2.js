@@ -4,6 +4,7 @@ import Footer from "../../compenents/footer/Footer";
 import Header from "../../compenents/haeder/Header";
 import DetailMain from "../../compenents/detailmain/DetailMain";
 
+
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -73,7 +74,6 @@ function Detailpage2() {
         <Header />
       </HeaderContainer>
       <DetailMainContainer>
-        {/* <div>asdadsfsd</div> */}
         <DetailMain />
       </DetailMainContainer>
       <FooterContainer>

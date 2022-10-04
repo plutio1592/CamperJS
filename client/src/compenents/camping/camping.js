@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 
 export const Wrapper = styled.div`
-width: 16%;
+width: 20em;
 height: 23em;
 padding: 0.2em;
 margin: 0.5rem;
@@ -52,12 +54,19 @@ background-color: #ffffff;
 }
 `;
 
+
+
 function Camping({camping,campingImg}) {
-  console.log("🚀 ~ file: camping.js ~ line 56 ~ Camping ~ campingImg", campingImg.split(',')[0])
+
+  let navigate = useNavigate();
   
+  const onClickMoveDVP = (contentId) => {
+    navigate(`/Detailpage2/${contentId}`, { state: camping });
+  };
+
       return(
-        <Wrapper>
-              <img src={campingImg.split(',')[0]}></img>
+        <Wrapper key={camping.contentId} onClick={()=>{onClickMoveDVP(camping.contentId)}}>
+               <img src={campingImg.split(',')[0]} loading="lazy" alt={camping.campingName}/>             
               <Description>
               <div className="title">
               <b>{camping.campingName}</b>
@@ -68,9 +77,7 @@ function Camping({camping,campingImg}) {
               </div>
               </Description>
         </Wrapper>
-  
         )
-
   };
   
   export default Camping;
