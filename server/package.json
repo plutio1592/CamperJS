@@ -12,7 +12,7 @@
     "api1": "node ../server/api/campingAPI.js",
     "api2": "node ../server/api/campingImageUrlAPI.js",
     "api3": "node ../server/api/campingImageUrlAPI2.js",
-    "restart": "concurrently \"npm run start\" \"npm run start --prefix ../client\""
+    "sethttps": "concurrently \"npm run start\" \"npm run sethttps --prefix ../client\""
   },
   "repository": {
     "type": "git",
