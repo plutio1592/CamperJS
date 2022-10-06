@@ -48,7 +48,7 @@ background-color: #ffffff;
   text-overflow: ellipsis;
   
   & > b{
-    color: #00000;
+    color: #000000;
     font-size :large;
   }
 }

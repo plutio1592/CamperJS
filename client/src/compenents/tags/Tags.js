@@ -48,9 +48,9 @@ export const TagButton = styled.button`
     
 `
 export const Tagname = styled.div`
- margin : 0
+ margin : 0;
  border : 0px solid black;
- width : 75px
+ width : 75px;
 `
 
 

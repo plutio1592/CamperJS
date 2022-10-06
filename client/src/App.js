@@ -6,6 +6,7 @@ import Mainpage from "./pages/mainpage/Mainpage";
 import Detailpage2 from "./pages/detailpage/Detailpage2";
 import axios from "axios";
 
+
 // function ContentId() {
 
 //   if (loading) return <div>로딩중..</div>;
@@ -35,7 +36,7 @@ function App() {
       setError(null);
       setContentId(contentId);
       setLoading(true);
-      const response = await axios.get("http://localhost:4002/camping")
+      const response = await axios.get("https://localhost:4002/camping")
       setContentId(response.data);
     } catch (e) {
       setError(e);
