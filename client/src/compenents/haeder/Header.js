@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
-import SignUpButton from "../../component/SignUpButton";
-
+import SignUpModal from "../../component/modal/SignUpModal2";
 
 export const HeaderItemContainer = styled.div`
 
@@ -190,31 +190,36 @@ function Header() {
         // 기존창 홈페이지로 보내기
         window.location.assign('https://www.google.com/')
     }
+
+    const [signUpModalOn, setSignUpModalOn] = useState(false);
     return (
         <>
-            <HeaderItemContainer>
-                <Logo onClick={mainpage}>
-                        <LogoImg src='../별보러가자.ico' alt='logo' />
-                        <LogoImg2 src='../별보러가자2.ico' alt='logo' />
-                        <LogoTitle src="../logotitle.ico" alt="LogoTitle" />
-                </Logo>
-                <SearchContainer>
-                    <SearchBar>
-                        <div>어디든지</div>
-                        <div>주말에</div>
-                        <div>게스트추가</div>
-                        <img src="../searchBtn.svg" alt="search" />
-                    </SearchBar>
-                </SearchContainer>
-                <UserContainer>
-                {/* <SignUpButton />
-                    <UserLogin>
-                        <MdList size="30"color="gray"/>
-                        <MdAccountCircle size="40"color="gray"/>
-                    </UserLogin> */}
-                    <SignUpButton />
-                </UserContainer>
-            </HeaderItemContainer>
+        <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
+        <HeaderItemContainer>
+            <Logo onClick={mainpage}>
+                    <LogoImg src='../별보러가자.ico' alt='logo' />
+                    <LogoImg2 src='../별보러가자2.ico' alt='logo' />
+                    <LogoTitle src="../logotitle.ico" alt="LogoTitle" />
+            </Logo>
+            <SearchContainer>
+                <SearchBar>
+                    <div>어디든지</div>
+                    <div>주말에</div>
+                    <div>게스트추가</div>
+                    <img src="../searchBtn.svg" alt="search" />
+                </SearchBar>
+            </SearchContainer>
+            <UserContainer>
+                <btn 
+                    type = 'button' 
+                    className = 'signUpBtn'
+                    onClick={() => setSignUpModalOn(true)}>회원가입</btn>
+                <UserLogin>
+                    <MdList size="30"color="gray"/>
+                    <MdAccountCircle size="40"color="gray"/>
+                </UserLogin>
+            </UserContainer>
+        </HeaderItemContainer>
         </>
     )
 };
