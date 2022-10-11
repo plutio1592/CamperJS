@@ -5,20 +5,21 @@ import Mainpage from "./pages/mainpage/Mainpage";
 // import Detailpage from "./pages/detailpage/Detailpage";
 import Detailpage2 from "./pages/detailpage/Detailpage2";
 import axios from "axios";
-
+const campingAPI = process.env.REACT_APP_CAMPING
+console.log(campingAPI)
 
 // function ContentId() {
 
-//   if (loading) return <div>로딩중..</div>;
-//   if (error) return <div>에러가 발생했습니다</div>;
-
-//   if (!contentId) return null;
-//   console.log(contentId);
-//   return (
+  //   if (loading) return <div>로딩중..</div>;
+  //   if (error) return <div>에러가 발생했습니다</div>;
+  
+  //   if (!contentId) return null;
+  //   console.log(contentId);
+  //   return (
 //     <>
 //       <ul>
 //         {contentId.map((contentId) => (
-//           <li key={contentId.contentId}>{contentId.campingName}</li>
+  //           <li key={contentId.contentId}>{contentId.campingName}</li>
 //         ))}
 //       </ul>
 //       <button onClick={fetchContentId}>다시 불러오기</button>
@@ -30,13 +31,13 @@ function App() {
   const [contentId, setContentId] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const fetchContentId = async() => {
     try {
       setError(null);
       setContentId(contentId);
       setLoading(true);
-      const response = await axios.get("https://localhost:4002/camping")
+      const response = await axios.get(campingAPI)
       setContentId(response.data);
     } catch (e) {
       setError(e);

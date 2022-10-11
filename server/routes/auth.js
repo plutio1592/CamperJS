@@ -2,13 +2,13 @@ const express = require('express')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
-// const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
 const {user} = require('../models')
 
 const router = express.Router()
 
 //로컬 회원가입
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', isNotLoggedIn, async (req, res, next) => {
   // const { username, password, name, email, phone } = req.body;
 
   try {
@@ -22,14 +22,15 @@ router.post('/signup', async (req, res, next) => {
     // }
 
 
-    // const searchDuplicateEmail = await user.findOne({
-    //   where: {
-    //     email: req.body.email,
-    //   }
-    // })
-    // if (searchDuplicateEmail) {
-    //   return res.status(403).send('이미 사용중인 이메일입니다.')
-    // }
+    const searchDuplicateEmail = await user.findOne({
+      where: {
+        email: req.body.email,
+      }
+    })
+    if (searchDuplicateEmail) {
+      return res.status(403).send('이미 사용중인 이메일입니다.')
+      // return res.redirect('/join?error=exist')
+    }
 
     // const searchDuplicatePhone = await user.findOne({
     //   where: {
@@ -59,7 +60,7 @@ router.post('/signup', async (req, res, next) => {
 })
 
 //로컬 로그인
-router.post('/login', (req, res, next) => {
+router.post('/login', isNotLoggedIn, (req, res, next) => {
   passport.authenticate('local',(err, users, info) => {
     if (err) {
       console.error(err)
@@ -124,5 +125,29 @@ router.delete('/delete', async (req, res, next) => {
     res.status(500).send(err);
   });
 })
+
+router.get('/kakao', passport.authenticate('kakao'));
+
+router.get(
+  '/kakao/callback',
+
+  passport.authenticate('kakao', isNotLoggedIn, {
+    failureRedirect: '/',
+}),
+  (req, res) => {
+    res.redirect('https://localhost:3000');
+  },
+);
+
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  
+  (req, res) => {
+    res.redirect('https://localhost:3000');
+  },
+);
 
 module.exports = router

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
+const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY
+const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI
+const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+const GOOGLE_URL = process.env.REACT_APP_GOOGLE_CLIENT_CALLBACK_URL
 
 export const HeaderItemContainer = styled.div`
 
@@ -170,7 +174,6 @@ export const UserLogin = styled.button`
     transition: 0.2s;
 }
 `;
-
 function Header() {
     const mainpage = ()=>{
         // 새창으로 띄우기
@@ -180,7 +183,10 @@ function Header() {
         // window.location.assign('http://localhost:3000/')
     }
     return (
+        
         <HeaderItemContainer>
+<a id="kakao" href={KAKAO_URL} class="btn">카카오톡 로그인</a>
+<a id="google" href={GOOGLE_URL} class="btnn">구글 로그인</a>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
                     <LogoImg2 src='../별보러가자2.ico' alt='logo' />
