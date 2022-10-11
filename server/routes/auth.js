@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const session = require('express-session')
 // const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
 const {user} = require('../models')
 
@@ -11,33 +12,33 @@ router.post('/signup', async (req, res, next) => {
   // const { username, password, name, email, phone } = req.body;
 
   try {
-    const searchDuplicateId = await user.findOne({
-      where: {
-        username: req.body.username,
-      }
-    })
-    if (searchDuplicateId) {
-      return res.status(403).send('이미 사용중인 계정입니다.')
-    }
+    // const searchDuplicateId = await user.findOne({
+    //   where: {
+    //     username: req.body.username,
+    //   }
+    // })
+    // if (searchDuplicateId) {
+    //   return res.status(403).send('이미 사용중인 계정입니다.')
+    // }
 
 
-    const searchDuplicateEmail = await user.findOne({
-      where: {
-        email: req.body.email,
-      }
-    })
-    if (searchDuplicateEmail) {
-      return res.status(403).send('이미 사용중인 이메일입니다.')
-    }
+    // const searchDuplicateEmail = await user.findOne({
+    //   where: {
+    //     email: req.body.email,
+    //   }
+    // })
+    // if (searchDuplicateEmail) {
+    //   return res.status(403).send('이미 사용중인 이메일입니다.')
+    // }
 
-    const searchDuplicatePhone = await user.findOne({
-      where: {
-        email: req.body.Phone,
-      }
-    })
-    if (searchDuplicatePhone) {
-      return res.status(403).send('이미 사용중인 번호입니다.')
-    }
+    // const searchDuplicatePhone = await user.findOne({
+    //   where: {
+    //     email: req.body.Phone,
+    //   }
+    // })
+    // if (searchDuplicatePhone) {
+    //   return res.status(403).send('이미 사용중인 번호입니다.')
+    // }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 12)
     await user.create({
@@ -46,8 +47,8 @@ router.post('/signup', async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      phoneChk: req.body.phoneChk,
-      loginType: req.body.loginType,
+      phoneChk: "0",
+      loginType: "0",
     })
     res.status(201).send("회원가입 완료")
 
@@ -84,7 +85,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-//로그인유지
+//로그인유지 (미확인)
 router.get('/', async (req, res, next) => {
   try {
     if (req.users) {
@@ -101,5 +102,27 @@ catch (err) {
   console.error(err)
   return next(err)
 }})
+
+//회원탈퇴 (미완성)
+router.delete('/delete', async (req, res, next) => {
+  console.log('나와라 세션아이디', req.session.username)
+  user.destroy({
+    where: {
+      username: req.body.username,
+    },
+  })
+  .then(() => {
+    req.body.destroy((err) => {
+      if (err) {
+        res.status(400).send('you are currently not logined');
+      } else {
+        res.status(200).send('회원탈퇴 성공.');
+      }
+    });
+  })
+  .catch((err) => {
+    res.status(500).send(err);
+  });
+})
 
 module.exports = router

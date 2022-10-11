@@ -115,7 +115,7 @@ const DetailMain = ({ aircoverModalHandler }) => {
           <div>
           {intro}
           </div>
-          <button>더보기 </button>
+          <button>더보기 {">"} </button>
         </AirCoverContainer>
         <AirCoverContainer>
           <h2>숙박장소</h2>
