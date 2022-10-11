@@ -66,7 +66,6 @@ const DetailMain = ({ aircoverModalHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { state } = useLocation();
   const {campingName, intro} = state
-  console.log("🚀 ~ file: DetailMain.js ~ line 68 ~ DetailMain ~ state", state)
   // const openModalHandler = () => {
   //   setIsOpen(!isOpen);
   // };
