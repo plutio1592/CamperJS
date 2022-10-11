@@ -49,7 +49,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
       email: req.body.email,
       phone: req.body.phone,
       phoneChk: "0",
-      loginType: "0",
+      loginType: "local",
     })
     res.status(201).send("회원가입 완료")
 
@@ -74,7 +74,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginErr)
         return next(loginErr)
       }
-      return res.status(200).json(users)
+      return res.status(200).json("로그인 완료")
     })
   })(req, res, next)
 })
@@ -126,19 +126,21 @@ router.delete('/delete', async (req, res, next) => {
   });
 })
 
+//카카오 로그인
 router.get('/kakao', passport.authenticate('kakao'));
 
 router.get(
   '/kakao/callback',
 
-  passport.authenticate('kakao', isNotLoggedIn, {
+  passport.authenticate('kakao', {
     failureRedirect: '/',
 }),
   (req, res) => {
-    res.redirect('https://localhost:3000');
+    res.redirect(process.env.CALL_BACK);
   },
 );
 
+//구글 로그인
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get(
@@ -146,7 +148,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   
   (req, res) => {
-    res.redirect('https://localhost:3000');
+    res.redirect(process.env.CALL_BACK);
   },
 );
 
