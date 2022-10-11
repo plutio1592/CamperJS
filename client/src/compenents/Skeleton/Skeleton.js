@@ -59,9 +59,10 @@ animation: skeleton-loading 8s ease-in-out infinite;
 @keyframes skeleton-loading {
 0% {
     background-position: 200% 0;
-}
+  }
 100% {
     background-position: -200% 0;
+  }
 }
 `
 
@@ -82,7 +83,7 @@ background-color: #ffffff;
   text-overflow: ellipsis;
   
   & > b{
-    color: #00000;
+    color: #000000;
     font-size :large;
   }
 }

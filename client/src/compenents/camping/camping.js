@@ -53,10 +53,8 @@ background-color: #ffffff;
   }
 }
 `;
-
-
-
 function Camping({camping,campingImg}) {
+
 
   let navigate = useNavigate();
   

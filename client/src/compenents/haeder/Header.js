@@ -171,12 +171,13 @@ export const UserLogin = styled.button`
 }
 `;
 
-function Header() {
+function Header(resetCondition) {
     const mainpage = ()=>{
         // 새창으로 띄우기
         // window.open("http://localhost:3000/")
         // 기존창 홈페이지로 보내기
         window.location.assign('http://localhost:3000/')
+        resetCondition()
     }
     return (
         <HeaderItemContainer>

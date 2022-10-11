@@ -78,18 +78,18 @@ export const TopButtonContainer = styled.div`
 `
 /////////////////////////////////////////////////////////////////////////////////
 
-function Mainpage({isLoading,contentId}) {
+function Mainpage({isLoading,filteredData,resetCondition,onSearch,onTag}) {
 
   return (
     <MainPage>
       <HeaderContainer>
-        <Header />
+        <Header resetCondition={resetCondition}  onSearch={onSearch}/>
       </HeaderContainer>
       <TagContainer>
-        <Tags />
+        <Tags  onTag={onTag}/>
       </TagContainer>
       <MainContainer>
-        <Main isLoading={isLoading} contentId={contentId} />
+        <Main isLoading={isLoading} filteredData={filteredData}/>
       </MainContainer>
       <FooterContainer>
         <Footer />
