@@ -1,5 +1,12 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
+import SignUpModal from "../../component/modal/SignUpModal2";
+import LoginModal from "../../component/modal/LoginModal";
+const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY
+const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI
+const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+const GOOGLE_URL = process.env.REACT_APP_GOOGLE_CLIENT_CALLBACK_URL
 
 export const HeaderItemContainer = styled.div`
 
@@ -171,16 +178,34 @@ export const UserLogin = styled.button`
 }
 `;
 
-function Header() {
+// export const UserSignUp = styled.button`
+//     display: flex;
+//     width: 5rem;
+//     height: 3rem;
+//     background: purple;
+//     cursor: pointer;
+//     border: 1px solid;
+//     border-radius: 15px;
+// `
+
+function Header(resetCondition) {
     const mainpage = ()=>{
         // 새창으로 띄우기
         // window.open("http://localhost:3000/")
         // 기존창 홈페이지로 보내기
-        window.location.assign('http://localhost:3000/')
-        // window.location.assign('http://localhost:3000/')
+        window.location.assign(process.env.REACT_APP_CAMPER_HOME)
+        resetCondition()
     }
+
+    const [signUpModalOn, setSignUpModalOn] = useState(false);
+    const [signInModalOn, setSignInModalOn] = useState(false);
     return (
+        <>
+        <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
+        <LoginModal show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
         <HeaderItemContainer>
+<a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
+<a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
                     <LogoImg2 src='../별보러가자2.ico' alt='logo' />
@@ -195,12 +220,18 @@ function Header() {
                 </SearchBar>
             </SearchContainer>
             <UserContainer>
+                <btn 
+                    type = 'button' 
+                    className = 'signUpBtn'
+                    onClick={() => setSignUpModalOn(true)}>회원가입</btn>
                 <UserLogin>
                     <MdList size="30"color="gray"/>
-                    <MdAccountCircle size="40"color="gray"/>
+                    <MdAccountCircle size="40"color="gray"
+                        onClick={() => setSignInModalOn(true)}/>
                 </UserLogin>
             </UserContainer>
         </HeaderItemContainer>
+        </>
     )
 };
 

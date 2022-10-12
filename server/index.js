@@ -1,7 +1,8 @@
+const express = require('express');
+const app = express();
 const fs = require('fs')
 const https = require('https')
 const cors = require('cors');
-const express = require('express');
 const passport = require('passport')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
@@ -15,7 +16,7 @@ const campingRouter = require('./routes/campings');
 const passportConfig = require('./routes/passport')
 const authRouter = require('./routes/auth')
 
-const app = express();
+passportConfig() //패스포트 설정
 
 app.use(express.json());
 //json 형태 데이터 해석
@@ -36,16 +37,15 @@ app.use(
   
   app.use(cookieParser(process.env.COOKIE_SECRET))
   app.use(session({
-    saveUninitialized: false,
-    resave: false,
-    secret: process.env.COOKIE_SECRET,
+    saveUninitialized: false, //초기화 되지 않은 상태로 스토어에 저장되는 세션
+    resave: false, //세션을 항상 저장할 것 인가?
+    secret: process.env.COOKIE_SECRET, //세션 암호화
       cookie: {
-        httpOnly: true, //http만 사용
-        secure: true, //true: https ON, false: https OFF
+        httpOnly: false, //브라우저에서는 쿠키에 접근할 수 없도록 제한 (XSS 공격 차단)
+        secure: false, //HTTPS가 아닌 통신에서는 쿠키를 전송하지 않음
       },
   }))
 
-  passportConfig()
 app.use(passport.initialize())
 app.use(passport.session())
 

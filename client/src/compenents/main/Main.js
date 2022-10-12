@@ -33,9 +33,9 @@ function findImg(imageUrl){
   }
 
 
-function Main({isLoading,contentId}) {
+function Main({isLoading,filteredData}) {
   
-  if (!contentId) {
+  if (!filteredData) {
     return (
       <Wrapper>
         {
@@ -52,7 +52,8 @@ function Main({isLoading,contentId}) {
           ? new Array(60).fill(1).map((_, i) => {
             return <Skeleton key={i} />;
           })
-          :contentId.map((camping) => (
+          :filteredData.map((camping) => (
+            camping.imageUrl &&
           <Camping key={camping.contentId} camping = {camping} campingImg ={findImg(camping.imageUrl)} />
         ))}     
       </Wrapper>
