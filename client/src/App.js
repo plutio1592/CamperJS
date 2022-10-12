@@ -36,7 +36,7 @@ function App() {
       setError(null);
       setContentId(contentId);
       setLoading(true);
-      const response = await axios.get("https://localhost:4002/camping")
+      const response = await axios.get("http://localhost:4002/camping")
       setContentId(response.data);
     } catch (e) {
       setError(e);
