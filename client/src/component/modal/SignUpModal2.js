@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal, Button, Form, Container, Col } from 'react-bootstrap'
 import axios from 'axios';
 
@@ -80,26 +80,30 @@ const SignUpModal = ({ show, onHide }) => {
 
 // 회원가입 구현
 
-axios.post(`주소/user/signup`,
-      {
-        username: userId,
-        password: userPwd,
-        name : userName,
-        email : userEmail,
-        phone : userPhone
-      })
-      .then(function (response) {
-        if(response.data.code === 201){
-          window.open("회원가입이 완료되었습니다")
-        } else {
-          let message = response.data.message;
-          if (response.data.code === 409) {
-            message = "이미 사용중인 아이디입니다."
-          }
-        }
-      }).catch(function (error) {
-        console.log(error);
-      })
+const signUp = () => {
+  return axios
+              .post(`주소/users/signup`,
+                    {
+                      username: userId,
+                      password: userPwd,
+                      name : userName,
+                      email : userEmail,
+                      phone : userPhone
+                    })
+                    .then(function (response) {
+                      if(response.data.code === 201){
+                        window.open("회원가입이 완료되었습니다")
+                      } else {
+                        let message = response.data.message;
+                        if (response.data.code === 409) {
+                          message = "이미 사용중인 아이디입니다."
+                        }
+                      }
+                    }).catch(function (error) {
+                      console.log(error);
+                    })
+}
+
 
   return (
     <Modal
@@ -189,7 +193,7 @@ axios.post(`주소/user/signup`,
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button block variant="info" type="button">
+          <Button block variant="info" type="button" onClick={signUp}>
               회원가입
           </Button>
           <Button onClick={onHide}>Close</Button>
