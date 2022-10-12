@@ -74,17 +74,18 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginErr)
         return next(loginErr)
       }
-      return res.status(200).json("로그인 완료")
+      return res.status(200).json(JSON.stringify(users))
     })
   })(req, res, next)
+ 
 })
 
 //로그아웃
-router.get('/logout', (req, res) => {
-  req.logout()
-  req.session.destroy()
-  res.redirect('/')
-})
+router.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+  });
+});
 
 //로그인유지 (미확인)
 router.get('/', async (req, res, next) => {
@@ -136,6 +137,7 @@ router.get(
     failureRedirect: '/',
 }),
   (req, res) => {
+    console.log("🚀 ~ file: auth.js ~ line 140 ~ res", res)
     res.redirect(process.env.CALL_BACK);
   },
 );
@@ -148,6 +150,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   
   (req, res) => {
+    console.log("🚀 ~ file: auth.js ~ line 153 ~ res", res)
     res.redirect(process.env.CALL_BACK);
   },
 );

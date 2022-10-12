@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
 import SignUpModal from "../../component/modal/SignUpModal2";
 import LoginModal from "../../component/modal/LoginModal";
+import axios from "axios";
 const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY
 const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI
 const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
@@ -196,6 +197,12 @@ function Header(resetCondition) {
         window.location.assign(process.env.REACT_APP_CAMPER_HOME)
         resetCondition()
     }
+    
+    function logout(){
+        axios.post("http://localhost:4002/auth/logout",{headers:localStorage.user})
+        delete localStorage.user
+        window.location.assign(process.env.REACT_APP_CAMPER_HOME)
+    }
 
     const [signUpModalOn, setSignUpModalOn] = useState(false);
     const [signInModalOn, setSignInModalOn] = useState(false);
@@ -204,8 +211,6 @@ function Header(resetCondition) {
         <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
         <LoginModal show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
         <HeaderItemContainer>
-<a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
-<a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
                     <LogoImg2 src='../별보러가자2.ico' alt='logo' />
@@ -219,17 +224,22 @@ function Header(resetCondition) {
                     <img src="../searchBtn.svg" alt="search" />
                 </SearchBar>
             </SearchContainer>
-            <UserContainer>
-                <btn 
-                    type = 'button' 
-                    className = 'signUpBtn'
-                    onClick={() => setSignUpModalOn(true)}>회원가입</btn>
-                <UserLogin>
-                    <MdList size="30"color="gray"/>
-                    <MdAccountCircle size="40"color="gray"
-                        onClick={() => setSignInModalOn(true)}/>
-                </UserLogin>
-            </UserContainer>
+            { (localStorage.user)? <button onClick={logout}>로그아웃</button> :                
+                <UserContainer>
+                <a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
+                <a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>
+                    <btn 
+                        type = 'button' 
+                        className = 'signUpBtn'
+                        onClick={() => setSignUpModalOn(true)}>회원가입</btn>
+                    <UserLogin>
+                        <MdList size="30"color="gray"/>
+                        <MdAccountCircle size="40"color="gray"
+                            onClick={() => setSignInModalOn(true)}/>
+                    </UserLogin>
+                </UserContainer>
+                
+            }
         </HeaderItemContainer>
         </>
     )
