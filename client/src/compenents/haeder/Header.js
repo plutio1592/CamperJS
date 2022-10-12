@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
 import SignUpModal from "../../component/modal/SignUpModal2";
+import LoginModal from "../../component/modal/LoginModal";
 
 export const HeaderItemContainer = styled.div`
 
@@ -192,9 +193,11 @@ function Header() {
     }
 
     const [signUpModalOn, setSignUpModalOn] = useState(false);
+    const [signInModalOn, setSignInModalOn] = useState(false);
     return (
         <>
         <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
+        <LoginModal show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
         <HeaderItemContainer>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
@@ -216,7 +219,8 @@ function Header() {
                     onClick={() => setSignUpModalOn(true)}>회원가입</btn>
                 <UserLogin>
                     <MdList size="30"color="gray"/>
-                    <MdAccountCircle size="40"color="gray"/>
+                    <MdAccountCircle size="40"color="gray"
+                        onClick={() => setSignInModalOn(true)}/>
                 </UserLogin>
             </UserContainer>
         </HeaderItemContainer>
