@@ -1,5 +1,7 @@
 const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
+console.log("🚀 ~ file: local.js ~ line 3 ~ LocalStrategy", LocalStrategy)
+
 
 const bcrypt = require('bcrypt')
 const { user } = require('../../models')

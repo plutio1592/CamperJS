@@ -199,18 +199,17 @@ function Header(resetCondition) {
     }
     
     function logout(){
-        axios.post("http://localhost:4002/auth/logout")
-        delete localStorage.data
-        setlogin(null)
+        axios.post("http://localhost:4002/auth/logout",{headers:localStorage.user})
+        delete localStorage.user
+        window.location.assign(process.env.REACT_APP_CAMPER_HOME)
     }
 
     const [signUpModalOn, setSignUpModalOn] = useState(false);
     const [signInModalOn, setSignInModalOn] = useState(false);
-    const [login, setlogin] = useState(null)
     return (
         <>
         <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
-        <LoginModal setlogin={setlogin} show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
+        <LoginModal show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
         <HeaderItemContainer>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
@@ -225,7 +224,7 @@ function Header(resetCondition) {
                     <img src="../searchBtn.svg" alt="search" />
                 </SearchBar>
             </SearchContainer>
-            { (login)? <button onClick={logout}>로그아웃</button> :                
+            { (localStorage.user)? <button onClick={logout}>로그아웃</button> :                
                 <UserContainer>
                 <a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
                 <a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>

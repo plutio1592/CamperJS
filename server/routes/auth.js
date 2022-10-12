@@ -74,17 +74,16 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginErr)
         return next(loginErr)
       }
-      return res.status(200).json(users)
+      return res.status(200).json(JSON.stringify(users))
     })
   })(req, res, next)
-  console.log("🚀 ~ file: auth.js ~ line 80 ~ passport.authenticate ~ passport", passport.Authenticator.Strategy)
+ 
 })
 
 //로그아웃
 router.post('/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/');
   });
 });
 
@@ -138,6 +137,7 @@ router.get(
     failureRedirect: '/',
 }),
   (req, res) => {
+    console.log("🚀 ~ file: auth.js ~ line 140 ~ res", res)
     res.redirect(process.env.CALL_BACK);
   },
 );
@@ -150,6 +150,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   
   (req, res) => {
+    console.log("🚀 ~ file: auth.js ~ line 153 ~ res", res)
     res.redirect(process.env.CALL_BACK);
   },
 );
