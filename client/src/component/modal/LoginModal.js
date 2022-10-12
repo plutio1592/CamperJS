@@ -1,6 +1,8 @@
-import React, { useState }  from 'react'
-import { Modal, Button, Form, Container, Col } from 'react-bootstrap'
-import axios from 'axios';
+
+import React, { useState } from "react"
+import { Modal, Button, Form, Container, Col } from "react-bootstrap"
+import axios from "axios"
+axios.defaults.withCredentials = true;
 
 const LoginModal = ({ show, onHide }) => {
 
@@ -23,26 +25,30 @@ const LoginModal = ({ show, onHide }) => {
 
   const logIn = () => {
     return axios
-                .post(`${process.env.REACT_APP_CAMPER_HOME}/auth/login`,
+                .post(`${process.env.REACT_APP_CAMPER_SERVER}/auth/login`,
                   { 
                     username: userId, 
-                    password: userPwd 
-                  })
+                    password: userPwd
+                  }, 
+                  // {withCredentials: true}
+                  ) 
                   .then((response) => {
-                    if (response.data === '로그인 완료') {
+                    if (response.data === "로그인 완료") {
                       //유저정보가 변한것이 마이페이지에 보여야된다
                       let token = response.data.token;
-                      localStorage.setItem('token', token);
-                      alert("로그인 완로")
-                      window.location.reload(process.env.REACT_APP_CAMPER_HOME)
+                      localStorage.setItem("token", token);
+                      // console.log(localStorage.setItem("token", token))
+                      console.log("세션", response)
+                      alert("로그인 완료")
+                      // window.location.reload(process.env.REACT_APP_CAMPER_HOME)
                     }
                   })
                   .catch((err) => {
                     if (err) {
-                      alert('이메일과 패스워드를 확인해주세요!');
                     }
                   });
-  };
+                };
+                // alert("이메일과 패스워드를 확인해주세요!");
 
   return (
     <Modal

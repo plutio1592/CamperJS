@@ -72,7 +72,7 @@ const SignUpModal = ({ show, onHide }) => {
   };
 
   const onChangeUserPhone = (e) => {
-    const userPhoneRegex = /^[0-9]{12}$/;
+    const userPhoneRegex = /^[0-9]{11}$/;
     if ((!e.target.value || (userPhoneRegex.test(e.target.value)))) setUserPhoneError(false);
     else setUserPhoneError(true);
     setUserPhone(e.target.value);
@@ -82,21 +82,25 @@ const SignUpModal = ({ show, onHide }) => {
 
 const signUp = () => {
   return axios
-              .post(`주소/users/signup`,
-                    {
-                      username: userId,
-                      password: userPwd,
-                      name : userName,
-                      email : userEmail,
-                      phone : userPhone
-                    })
-                    .then(function (response) {
-                      if(response.data.code === 201){
-                        window.open("회원가입이 완료되었습니다")
+              .post(`${process.env.REACT_APP_CAMPER_SERVER}/auth/signup`,
+              {
+                username: userId,
+                password: userPwd,
+                name : userName,
+                email : userEmail,
+                phone : userPhone
+              })
+              .then(function (response) {
+                      // console.log("누구세요?", response.data)
+                      if(response.data === "회원가입 완료"){
+                        alert("회원가입이 완료되었습니다")
+                        window.location.reload(process.env.REACT_APP_CAMPER_HOME)
                       } else {
-                        let message = response.data.message;
-                        if (response.data.code === 409) {
-                          message = "이미 사용중인 아이디입니다."
+                        // let message = response.data;
+                        // console.log("중복검사", response.data)
+                        if (response.data === "이미 사용중인 이메일입니다.") {
+                          alert("이미 사용중인 이메일입니다")
+                          // message = "이미 사용중인 아이디입니다."
                         }
                       }
                     }).catch(function (error) {
@@ -104,6 +108,26 @@ const signUp = () => {
                     })
 }
 
+// axios.post(`https://localhost:4002/auth/signup`,
+//       {
+//         username: userId,
+//         password: userPwd,
+//         name : userName,
+//         email : userEmail,
+//         phone : userPhone
+//       })
+//       .then(function (response) {
+//         if(response.data.code === 201){
+//           window.open("회원가입이 완료되었습니다")
+//         } else {
+//           let message = response.data.message;
+//           if (response.data.code === 409) {
+//             message = "이미 사용중인 아이디입니다."
+//           }
+//         }
+//       }).catch(function (error) {
+//         console.log(error);
+//       })
 
   return (
     <Modal
