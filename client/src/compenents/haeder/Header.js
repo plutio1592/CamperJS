@@ -183,6 +183,7 @@ function Header(resetCondition) {
         window.location.assign(process.env.REACT_APP_CAMPER_HOME)
         resetCondition()
     }
+    
     return (
         
         <HeaderItemContainer>

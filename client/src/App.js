@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Mainpage from "./pages/mainpage/Mainpage";
-// import Detailpage from "./pages/detailpage/Detailpage";
 import Detailpage2 from "./pages/detailpage/Detailpage2";
 import axios from "axios";
 
