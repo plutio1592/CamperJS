@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     fetchcampingData();
-  }, []);
+  });
 
   const onSearch = (searchText) => {
 
