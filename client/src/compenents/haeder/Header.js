@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
+<<<<<<< HEAD
 import SignUpModal from "../../component/modal/SignUpModal2";
 import LoginModal from "../../component/modal/LoginModal";
+=======
+const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY
+const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI
+const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+const GOOGLE_URL = process.env.REACT_APP_GOOGLE_CLIENT_CALLBACK_URL
+>>>>>>> a6cdd91fa61879e253ed8f0b84e7c558edc25576
 
 export const HeaderItemContainer = styled.div`
 
@@ -11,7 +18,7 @@ export const HeaderItemContainer = styled.div`
     height: 100%;
     justify-content: space-between;
     padding: 0 5% 0 5%;
-
+    background-color: white;
     @media screen and (max-width: 1200px) {
 
     }
@@ -174,6 +181,7 @@ export const UserLogin = styled.button`
 }
 `;
 
+<<<<<<< HEAD
 export const UserSignUp = styled.button`
     display: flex;
     width: 5rem;
@@ -185,20 +193,30 @@ export const UserSignUp = styled.button`
 `
 
 function Header() {
+=======
+function Header(resetCondition) {
+>>>>>>> a6cdd91fa61879e253ed8f0b84e7c558edc25576
     const mainpage = ()=>{
         // 새창으로 띄우기
         // window.open("http://localhost:3000/")
         // 기존창 홈페이지로 보내기
-        window.location.assign('https://www.google.com/')
+        window.location.assign(process.env.REACT_APP_CAMPER_HOME)
+        resetCondition()
     }
 
     const [signUpModalOn, setSignUpModalOn] = useState(false);
     const [signInModalOn, setSignInModalOn] = useState(false);
     return (
+<<<<<<< HEAD
         <>
         <SignUpModal show={signUpModalOn} onHide={() => setSignUpModalOn(false)}/>
         <LoginModal show={signInModalOn}  onHide={() => setSignInModalOn(false)} />
+=======
+        
+>>>>>>> a6cdd91fa61879e253ed8f0b84e7c558edc25576
         <HeaderItemContainer>
+<a id="kakao" href={KAKAO_URL} class="btn">카카오톡 로그인</a>
+<a id="google" href={GOOGLE_URL} class="btnn">구글 로그인</a>
             <Logo onClick={mainpage}>
                     <LogoImg src='../별보러가자.ico' alt='logo' />
                     <LogoImg2 src='../별보러가자2.ico' alt='logo' />

@@ -1,38 +1,40 @@
 ### 데이터 베이스 초기설정
-1. npm run setdb (DB 초기화 & 생성 및 API 값 저장 일괄 진행)
+1. npm run resetdb
+2. dbFinal.sql 파일로 등록
 </br>
 </br>
 
-### 504 Gateway Time-out Err & 아이피 주소 TimeErr 발생 시
-1. npm run resetdb (DB 초기화)
-2. npm run api1 (camping Table API 값 추가)
-3. npm run api2 (campingImageUrl Table API 첫번째 값 저장)
-4. npm run api3 (campingImageUrl Table API 두번째 값 저장)
-
-※. 위의 명령어를 순차적으로 입력하거나 공공 데이터포털 서버의 문제일 수 있으므로 2~30분 대기 후 입력
-</br>
+### dbFinal.sql 파일 활용 방법 (데이터베이스내 테이블 및 컬럼생성 & 값 추가)
 </br>
 
-### tsetdb.sql 파일 활용 방법 (API 오류 발생 시 활용)
-※. testdb.sql 파일을 사용할 경우 첫 DB 생성 시 npm run resetdb 입력 필수!
-</br>
-</br>
   - mysql WorkBench 활용
     - https://defacto-standard.tistory.com/127
 </br>
 </br>
 - mysql 터미널 활용
   - mysql 터미널 접속
-    - ex ) mysql -u root -p 1234
+    - ex ) mysql -u root -p
 </br>
   - 데이터베이스 선택
     - use camper_db;
 </br>
-  - source <본인의 testdb.sql 파일 경로> 입력
-    - ex ) source C:\JavaProJect\CamperJS\server\testdb.sql
-
+  - source <본인의 dbFinal.sql 파일 경로> 입력
+    - ex ) source C:\JavaProJect\CamperJS\server\dbFinal.sql
+</br>
 </br>
 
-※. mysql 오류로 인해 기존 파일명 Camper_DB.sql → testdb.sql로 변경됨
+### https 인증서 설치 방법 (mkcert)
 
+- mkcert 설치 (섹션2~3 내용이므로 이미 설치되어 있다면 인증서 설치로 건너뛰어도 됨)
+  - https://velog.io/@frostscent/%EB%A1%9C%EC%BB%AC-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-HTTPS-%EC%9D%B8%EC%A6%9D
 </br>
+</br>
+
+- 인증서 설치
+  - mkcert -key-file key.pem -cert-file cert.pem localhost 127.0.0.1 ::1
+</br>
+</br>
+- (다른 경로에 생성 됬다면) server 폴더로 key.pem & cert.pem 파일 이동
+
+※. mkcert 공식문서
+https://github.com/FiloSottile/mkcert

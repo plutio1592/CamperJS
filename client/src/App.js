@@ -1,6 +1,4 @@
-import React from 'react';
-import './App.css';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Mainpage from "./pages/mainpage/Mainpage";
@@ -8,79 +6,89 @@ import Mainpage from "./pages/mainpage/Mainpage";
 import Detailpage2 from "./pages/detailpage/Detailpage2";
 import axios from "axios";
 
-// function ContentId() {
-
-//   if (loading) return <div>로딩중..</div>;
-//   if (error) return <div>에러가 발생했습니다</div>;
-
-//   if (!contentId) return null;
-//   console.log(contentId);
-//   return (
-//     <>
-//       <ul>
-//         {contentId.map((contentId) => (
-//           <li key={contentId.contentId}>{contentId.campingName}</li>
-//         ))}
-//       </ul>
-//       <button onClick={fetchContentId}>다시 불러오기</button>
-//     </>
-//   );
-// }
-
-axios
-  .get("http://localhost:4002/camping")
-  .catch(function (error) {})
-  .then((response) => {
-    // console.log(response.data);
-  });
-
-
 function App() {
-  const [contentId, setContentId] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [contentIdImg, setContentIdImg] = useState(null);
+  const [campingData, setCampingData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+  const [Error,setError]=useState(null)
+  const [filteredData, setFilteredData] = useState(campingData)
 
-  const fetchContentId = async () => {
+
+
+  const fetchcampingData = async() => {
     try {
       setError(null);
-      setContentId(contentId);
+      setCampingData(campingData);
       setLoading(true);
-      const response = await axios.get("http://localhost:4002/camping");
-      setContentId(response.data);
+      const response = await axios.get(process.env.REACT_APP_CAMPING)
+      setCampingData(response.data);
+      setFilteredData(response.data)
     } catch (e) {
       setError(e);
+      console.log(Error)
+      setLoading(false);
     }
-    setLoading(false);
-  };
-
-  const fetchContentIdImg = async () => {
-    try {
-      setError(null);
-      setContentIdImg(contentIdImg);
-      setLoading(true);
-      const responseImg = await axios.get("http://localhost:4002/imageurl");
-      setContentIdImg(responseImg.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
   };
 
   useEffect(() => {
-    fetchContentId();
-    fetchContentIdImg();
+    fetchcampingData();
   }, []);
 
-  return (
+  const onSearch = (searchText) => {
 
+    const filteredCamping = campingData.filter(
+      (camping) =>
+        camping.campingName.includes(searchText) ||
+        camping.lctCl.includes(searchText) ||
+        camping.doNm.includes(searchText) ||
+        camping.sigunguNm.includes(searchText)
+    );
+
+    setFilteredData(filteredCamping);
+  };
+
+  const onTag = (searchText) => {
+    console.log("🚀 ~ file: App.js ~ line 50 ~ onTag ~ searchText", searchText)
+    if(searchText==="산" || searchText==="계곡"|| searchText==="숲"){
+      const filterLctCl = campingData.filter((camping) =>
+        camping.lctCl.includes(searchText)
+      )
+      setFilteredData(filterLctCl);
+    }
+    else if(searchText==="autoSiteCo" ||
+            searchText==="glampSiteCo" ||
+            searchText==="caravSiteCo" ||
+            searchText==="indvdlCaravSiteCo" ||
+            searchText==="siteBottomCl1" ||
+            searchText==="siteBottomCl2" ||
+            searchText==="siteBottomCl3" ||
+            searchText==="siteBottomCl5"
+            ){
+      const filterSite = campingData.filter((camping) =>
+        !(camping[searchText] === "0"))
+      setFilteredData(filterSite)
+    }
+    else if(searchText==="animalCmgCl"){
+      const filter = campingData.filter((camping) =>
+      !(camping[searchText] === "불가능"))
+      setFilteredData(filter)
+    }
+  }
+
+  const resetCondition = () => {
+    setFilteredData(campingData);
+  };
+
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Mainpage 
-          contentId = {contentId}
-          contentIdImg = {contentIdImg}/>} />
-        {/* <Route path="/detailpage" element={<Detailpage />} /> */}
-        <Route path="/detailpage2" element={<Detailpage2 />} />
+          filteredData = {filteredData}
+          isLoading={isLoading}
+          resetCondition={resetCondition}
+          onSearch={onSearch}
+          onTag={onTag}
+          />} />
+        <Route path="/detailpage2/:contentId" element={<Detailpage2 />} />
       </Routes>
     </BrowserRouter>
   );
