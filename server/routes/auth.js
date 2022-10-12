@@ -28,7 +28,7 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
       }
     })
     if (searchDuplicateEmail) {
-      return res.status(403).send('이미 사용중인 이메일입니다.')
+      return res.status(200).send('이미 사용중인 이메일입니다.')
       // return res.redirect('/join?error=exist')
     }
 
