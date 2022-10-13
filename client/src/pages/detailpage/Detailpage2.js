@@ -4,7 +4,6 @@ import Footer from "../../compenents/footer/Footer";
 import Header from "../../compenents/haeder/Header";
 import DetailMain from "../../compenents/detailmain/DetailMain";
 
-
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -58,7 +57,7 @@ export const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   z-index: 4;
