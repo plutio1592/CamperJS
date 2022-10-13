@@ -59,7 +59,7 @@ function Camping({camping,campingImg}) {
   let navigate = useNavigate();
   
   const onClickMoveDVP = (contentId) => {
-    navigate(`/Detailpage2/${contentId}`, { state: camping });
+    navigate(`/Detailpage/${contentId}`, { state: camping });
   };
 
       return(

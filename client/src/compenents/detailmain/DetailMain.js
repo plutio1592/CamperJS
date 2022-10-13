@@ -29,8 +29,8 @@ export const TitleContainer = styled.div`
   width: 70%;
   margin-left: 10rem;
   & > div > h1 {
-    font-family: 'MaplestoryOTFBold'
-    font-size: x-large;
+    font-family: 'MaplestoryOTFBold';
+    font-size : x-large;
   }
   & > div > h2 {
     font-size: large;

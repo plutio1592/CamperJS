@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { MdList,MdAccountCircle } from "react-icons/md";
-import SignUpModal from "../../component/modal/SignUpModal2";
-import LoginModal from "../../component/modal/LoginModal";
+import SignUpModal from "../modal/SignUpModal"
+import LoginModal from "../modal/LoginModal";
 import axios from "axios";
 const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY
 const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI
@@ -17,6 +17,7 @@ export const HeaderItemContainer = styled.div`
     justify-content: space-between;
     padding: 0 5% 0 5%;
     background-color: white;
+    position: absolute;
     @media screen and (max-width: 1200px) {
 
     }
@@ -86,10 +87,11 @@ export const SearchContainer = styled.div`
 `;
 
 export const UserContainer = styled.div`
-    width: 15%;
+    width: 20%;
     display: flex;
     justify-content: end;
     align-items: center;
+
     @media screen and (max-width: 1200px) {
 
     }
@@ -104,6 +106,36 @@ export const UserContainer = styled.div`
     }
     @media screen and (max-width: 0px) {
         display: none;
+    }
+
+    a {
+        margin : 0.5rem;
+    }
+
+    div {
+       margin-top : auto;
+       margin-bottom: auto;
+       margin-left: auto;
+       margin-right: 5px;
+       height : 30px;
+       white-space : nowrap;
+
+       @media screen and (max-width: 1200px) {
+
+        }
+        @media screen and (max-width: 992px) {
+            display: none;
+        }
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+        @media screen and (max-width: 576px) {
+            display: none;
+        }
+        @media screen and (max-width: 0px) {
+            display: none;
+        }
+
     }
 `;
 
@@ -179,6 +211,32 @@ export const UserLogin = styled.button`
 }
 `;
 
+export const LogOut = styled.button`
+    margin-top : auto;
+    margin-bottom : auto;
+    height: 2.3rem;
+    width : 5rem;
+    border-radius : 0.7rem;
+    border-color : grey;
+    color: grey;
+
+    @media screen and (max-width: 1200px) {
+
+    }
+    @media screen and (max-width: 992px) {
+        
+    }
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+    @media screen and (max-width: 576px) {
+        display: none;
+    }
+    @media screen and (max-width: 0px) {
+        display: none;
+    }
+`;
+
 // export const UserSignUp = styled.button`
 //     display: flex;
 //     width: 5rem;
@@ -224,14 +282,16 @@ function Header(resetCondition) {
                     <img src="../searchBtn.svg" alt="search" />
                 </SearchBar>
             </SearchContainer>
-            { (localStorage.user)? <button onClick={logout}>로그아웃</button> :                
+            { (localStorage.user)? <LogOut onClick={logout}>로그아웃</LogOut> :                
                 <UserContainer>
-                <a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
-                <a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>
-                    <btn 
+                    <div
                         type = 'button' 
                         className = 'signUpBtn'
-                        onClick={() => setSignUpModalOn(true)}>회원가입</btn>
+                        onClick={() => setSignUpModalOn(true)}>회원가입</div>
+                     <a id="kakao" href={KAKAO_URL} className="kakaka">
+                        <img height="35" width="35" src="./카카오아이콘.png" alt="카카오 로그인"/></a>
+                     <a id="google" href={GOOGLE_URL} className="gogogo">
+                     <img height="35" width="35" src="./구글아이콘.png" alt="구글 로그인"/></a>
                     <UserLogin>
                         <MdList size="30"color="gray"/>
                         <MdAccountCircle size="40"color="gray"
