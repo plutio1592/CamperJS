@@ -226,12 +226,14 @@ function Header(resetCondition) {
             </SearchContainer>
             { (localStorage.user)? <button onClick={logout}>로그아웃</button> :                
                 <UserContainer>
-                <a id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</a>
-                <a id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</a>
-                    <btn 
+                <div>
+                <button id="kakao" href={KAKAO_URL} class="kakaka">카카오톡 로그인</button>
+                <button id="google" href={GOOGLE_URL} class="gogogo">구글 로그인</button>
+                    <button 
                         type = 'button' 
                         className = 'signUpBtn'
-                        onClick={() => setSignUpModalOn(true)}>회원가입</btn>
+                        onClick={() => setSignUpModalOn(true)}>회원가입</button>
+                </div>
                     <UserLogin>
                         <MdList size="30"color="gray"/>
                         <MdAccountCircle size="40"color="gray"
