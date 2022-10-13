@@ -1,102 +1,173 @@
 import React from "react";
-import { useState, useRef } from "react";
 import AircoverModal from "../aircoverModal/AircoverModal";
+import MoreInfoModal from "../moreInfoModal/MoreInfoModal";
 import styled from "styled-components";
 import { GiButterflyFlower, GiMountains, GiRiver } from "react-icons/gi";
 import { TbToolsKitchen, TbWifi } from "react-icons/tb";
+import { MdPets } from "react-icons/md";
+import { VscKey } from "react-icons/vsc";
 import { useLocation } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
   border: none;
   display: flex;
-  flex-direction: column;
-  /* border: 5px solid blue; */
-  /* box-shadow: 0.1rem 0.1rem 0.2rem  gray; */
-  /* transition: transform 0.3s ease-out; */
-  /* font-family: "EarlyFontDiary"; */
 `;
 
 export const Description = styled.div`
   margin: 5rem 0 0 0;
   padding: 1rem 0 0 0;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  color: black;
   background-color: #ffffff;
-  /* border: 5px solid green; */
+  /* border: 5px solid blue; */
 `;
 
 export const TitleContainer = styled.div`
-  & > div > b {
-    margin: 1rem 0 0 0;
+  width: 70%;
+  margin-left: 10rem;
+  & > div > h1 {
+    font-family: 'MaplestoryOTFBold'
     font-size: x-large;
   }
-  & > div {
-    margin: 1rem;
-    font-size: small;
+  & > div > h2 {
+    font-size: large;
   }
 `;
 
 export const PotoContainer = styled.div`
-  margin: 1rem;
+  width: 73%;
+  margin-left: 10rem;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   & > img {
-    width: 100%;
+    width: 40%;
   }
 `;
 
 export const AirCoverContainer = styled.div`
-  width: 100%;
+  width: 70%;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   padding: 1rem;
+  margin-left: 10rem;
 
-  & > img {
-    width: 25%;
-    border-radius: 10%;
+  & > div {
+    font-size: large;
   }
+
   & > nav > h1 {
     color: red;
   }
 `;
 
-const DetailMain = ({ aircoverModalHandler }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const TagContainer = styled.div`
+  width: 70%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  margin-left: 10rem;
+  & > button {
+    margin-right: 1rem;
+    font-size: medium;
+    background-color: #ffffff;
+    border-style: solid;
+    outline: 0;
+    border-radius: 10% / 50%;
+  }
+`;
+
+const DetailMain = ({ aircoverModalHandler, moreInfoModalHandler }) => {
   const { state } = useLocation();
-  const {campingName, intro} = state
-  // const openModalHandler = () => {
-  //   setIsOpen(!isOpen);
-  // };
+  const {
+    campingName,
+    imageUrl,
+    doNm,
+    sigunguNm,
+    operDeCl,
+    lineIntro,
+    intro,
+    addr1,
+    animalCmgCl,
+    homepage,
+    tel,
+    posblFcltyCl,
+  } = state;
+  console.log("🚀 ~ file: DetailMain.js ~ line 68 ~ DetailMain ~ state", state);
+
+  let image1 = "";
+  if (imageUrl !== "undefined") {
+    image1 = imageUrl.split(",")[0];
+  } else {
+    image1 = null;
+  }
+
+  let image2 = "";
+  if (imageUrl !== "undefined") {
+    image2 = imageUrl.split(",")[1];
+  } else {
+    image2 = null;
+  }
+
+  let image3 = "";
+  if (imageUrl !== "undefined") {
+    image3 = imageUrl.split(",")[2];
+  } else {
+    image3 = null;
+  }
+
+  let image4 = "";
+  if (imageUrl !== "undefined") {
+    image4 = imageUrl.split(",")[3];
+  } else {
+    image4 = null;
+  }
+
+  let posblFcltyClThing = "";
+  if (posblFcltyCl !== "") {
+    posblFcltyClThing = posblFcltyCl + "구비되어 있음";
+  } else {
+    posblFcltyClThing = "-";
+  }
 
   return (
     <Wrapper>
       <Description>
         <TitleContainer>
-          <div className="title">
-            <b>{campingName}</b>
+          <div>
+            <h1>{campingName}</h1>
           </div>
-          <div className="rating">
-            ⭐ 4.97 · 후기 470개 · 슈퍼호스트 · Gimsatgat-myeon, Yeongweol,
-            강원도, 한국
+          <div>
+            <h2> ⭐ 4.68 . 후기 28개 . {addr1}</h2>
           </div>
         </TitleContainer>
         <PotoContainer>
-          <img className="image1" alt="image1" src="img/image1.webp" />
-          {/* <img className="image2" alt="image2" src="img/image2.webp" />
-          <img className="image3" alt="image3" src="img/image3.webp" />
-          <img className="image4" alt="image4" src="img/image4.webp" /> */}
+          <img src={image1} className="image1" />
+          <img src={image2} className="image2" />
+          <img src={image3} className="image3" />
+          <img src={image4} className="image4" />
         </PotoContainer>
         <AirCoverContainer>
           <div>
-            흔치 않은 기회입니다.Jeong Im님의 에어비앤비 숙소는 보통 예약이 가득
-            차 있습니다.
+            흔치 않은 기회입니다! {campingName}님의 숙소는 보통 예약이 가득 차
+            있습니다.
+          </div>
+        </AirCoverContainer>
+        <AirCoverContainer>
+          <div>
+            <VscKey size={25} /> 순조로운 체크인 과정
+          </div>
+          <br></br>
+          <div>
+            <MdPets size={25} /> 반려동물 가능여부 : {animalCmgCl}
           </div>
         </AirCoverContainer>
         <AirCoverContainer>
           <nav className="navigation-bar">
-            <h1 className="aircover-logo">에어커버</h1>
+            <h1 className="aircover-logo">소비자 권익보호</h1>
             <div>
               모든 예약에는 호스트가 예약을 취소하거나 숙소 정보가 정확하지 않은
               경우 또는 체크인에 문제가 있는 상황에 대비한 무료 보호 프로그램이
@@ -112,20 +183,25 @@ const DetailMain = ({ aircoverModalHandler }) => {
           <AircoverModal aircoverModalHandler={aircoverModalHandler} />
         </AirCoverContainer>
         <AirCoverContainer>
-          <div>
-          {intro}
-          </div>
-          <button>더보기 {">"} </button>
+          <h2>숙소 한 줄 설명</h2>
+          <div>{lineIntro}</div>
+          <br></br>
+          <div>{intro}</div>
+          <MoreInfoModal
+            aircoverModalHandler={moreInfoModalHandler}
+            intro={intro}
+          />
         </AirCoverContainer>
-        <AirCoverContainer>
+        {/* <AirCoverContainer>
           <h2>숙박장소</h2>
           <img className="image1" alt="image1" src="img/image1.webp" />
           <div>
             침실 <br></br> 퀸사이즈 침대 1개, 소파 1개
           </div>
-        </AirCoverContainer>
+        </AirCoverContainer> */}
         <AirCoverContainer>
           <h2>숙소 편의시설</h2>
+          <h3>기본</h3>
           <div>
             <GiButterflyFlower size={30} />
             정원 전망
@@ -145,8 +221,24 @@ const DetailMain = ({ aircoverModalHandler }) => {
             <TbWifi size={30} />
             무선 인터넷
           </div>
-          <button>편의시설 46개 모두 보기</button>
+          <h3>다른 숙소와는 다른 차이점 </h3>
+          <div>{posblFcltyClThing}</div>
         </AirCoverContainer>
+        <AirCoverContainer>
+          <h2>홈페이지</h2>
+          <a href={homepage} target="_blank" rel="noreferrer">
+            {homepage}
+          </a>
+        </AirCoverContainer>
+        <AirCoverContainer>
+          <h2>문의사항</h2>
+          <a href="tel:{tel}">{tel}</a>
+        </AirCoverContainer>
+        <TagContainer>
+          <h2>지역 태그</h2>
+          <button>{doNm}</button>
+          <button>{sigunguNm}</button>
+        </TagContainer>
       </Description>
       {/* <img src="https://gocamping.or.kr/upload/camp/4/thumb/thumb_720_4548WQ5JCsRSkbHrBAaZylrQ.jpg"></img> */}
     </Wrapper>
