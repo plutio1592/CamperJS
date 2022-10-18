@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Footer from "../../compenents/footer/Footer";
-import Header from "../../compenents/haeder/Header";
+import Header from "../../compenents/header/Header";
 import Tags from "../../compenents/tags/Tags";
 import Main from "../../compenents/main/Main";
 

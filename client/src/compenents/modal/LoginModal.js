@@ -1,7 +1,9 @@
+
 import React, { useState } from "react"
 import { Modal, Button, Form, Container, Col } from "react-bootstrap"
 import axios from "axios"
 axios.defaults.withCredentials = true;
+
 const LoginModal = ({ show, onHide, setlogin }) => {
 
   const [userId, setUserId] = useState("");
@@ -22,7 +24,6 @@ const LoginModal = ({ show, onHide, setlogin }) => {
   };
 
   const logIn = () => {
-
     return axios
                 .post(`${process.env.REACT_APP_CAMPER_SERVER}/auth/login`,
                   { 
@@ -46,7 +47,6 @@ const LoginModal = ({ show, onHide, setlogin }) => {
                   });
                 };
                 // alert("이메일과 패스워드를 확인해주세요!");
-
 
   return (
     

@@ -111,7 +111,7 @@ function Tags({onTag}) {
                     </TagButton>
                     <TagButton onClick={onClickTagautoSiteCo} key="autoSiteCo">
                         <FaCarSide size={30} />
-                        <Tagname>자동차야영장</Tagname>
+                        <Tagname>오토캠핑</Tagname>
                     </TagButton>
                     <TagButton onClick={onClickTagglampSiteCo} key="glampSiteCo">
                         <GiCampingTent size={30}/>

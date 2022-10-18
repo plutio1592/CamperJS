@@ -1,23 +1,15 @@
+import React from "react";
 import styled from "styled-components";
 import Footer from "../../compenents/footer/Footer";
-import Header from "../../compenents/haeder/Header";
-// import Tags from "../../compenents/tags/Tags";
+import Header from "../../compenents/header/Header";
 import DetailMain from "../../compenents/detailmain/DetailMain";
-import ReviewWrite from "../../compenents/ReviewWrite/ReviewWrite";
-import ReviewTab from "../../compenents/ReviewTab/ReviewTab";
-import Bill from "../../compenents/bill/bill";
 
-export const Detailpage = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+export const Wrapper = styled.div`
   height: 100%;
-  border: 20px solid red;
-  top: 100px;
+  width: 100%;
+  flex-direction: column;
+  /* border: 5px solid red; */
 `;
-// display flex 적용
-// 방향 설정 아래로
-// 브라우저 100%설정
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -30,42 +22,32 @@ export const HeaderContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 3;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 `;
-//border-bottom: 0.063rem solid #e0dde1; 박스 그림자 효과
-//justify-content: center; 가운데 정렬
-//align-items: center; 아이템들 가운데 정렬
-//  position: fixed; 고정된(fixed) 위치에 배치
-//  z-index: 4; 앞 순서
 
-// export const TagContainer = styled.div`
-//   width: 100%;
-//   border-bottom: 0.063rem solid #e0dde1;
+export const DetailMainContainer = styled.div`
+  top: 500rem;
+  height: 90%;
+  width: 100%;
+  /* border: 5px solid black; */
+`;
+
+// export const FooterContainer = styled.div`
 //   height: 5rem;
+//   width: 100%;
+//   background: #ffffff;
+//   border-top: 0.063rem solid #e0dde1;
+//   display: flex;
 //   justify-content: center;
 //   align-items: center;
 //   position: fixed;
-//   top: 5rem;
+//   bottom: 0;
 //   left: 0;
+//   z-index: 4;
+//   @media screen and (max-width: 768px) {
+//     height: 4rem;
+//   }
 // `;
-
-export const DetailMainContainer = styled.div`
-  height: 60rem;
-  width: 100%;
-  border: 2px solid black;
-`;
-
-export const ReviewWriteContainer = styled.div`
-  height: 60rem;
-  width: 100%;
-`;
-
-export const ReviewTabContainer = styled.div`
-  height: 60rem;
-  width: 100%;
-`;
-
-export const BillContainer = styled.div``;
 
 export const FooterContainer = styled.div`
   height: 5rem;
@@ -75,7 +57,7 @@ export const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   z-index: 4;
@@ -84,29 +66,21 @@ export const FooterContainer = styled.div`
   }
 `;
 
-function Mainpage() {
+function Detailpage() {
   return (
-    <Detailpage>
+    <Wrapper>
       <HeaderContainer>
         <Header />
       </HeaderContainer>
       <DetailMainContainer>
         <DetailMain />
       </DetailMainContainer>
-      {/* <ReviewWriteContainer>
-        <ReviewWrite />
-      </ReviewWriteContainer> */}
-      {/* <ReviewTabContainer>
-        <ReviewTab />
-      </ReviewTabContainer> */}
-      <BillContainer>
-        <Bill />
-      </BillContainer>
       <FooterContainer>
         <Footer />
       </FooterContainer>
-    </Detailpage>
+    </Wrapper>
   );
 }
 
-export default Mainpage;
+export default Detailpage;
+;

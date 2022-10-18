@@ -72,7 +72,7 @@ const SignUpModal = ({ show, onHide }) => {
   };
 
   const onChangeUserPhone = (e) => {
-    const userPhoneRegex = /^[0-9]{12}$/;
+    const userPhoneRegex = /^[0-9]{11}$/;
     if ((!e.target.value || (userPhoneRegex.test(e.target.value)))) setUserPhoneError(false);
     else setUserPhoneError(true);
     setUserPhone(e.target.value);
@@ -217,8 +217,9 @@ const signUp = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button block variant="info" type="button"> 회원가입 </Button> */}
-          <Button block variant="info" type="button" onClick={signUp}> 회원가입 </Button>
+          <Button block variant="info" type="button" onClick={signUp}>
+              회원가입
+          </Button>
           <Button onClick={onHide}>Close</Button>
         </Modal.Footer>
       </Container>

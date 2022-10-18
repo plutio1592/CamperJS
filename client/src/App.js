@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Mainpage from "./pages/mainpage/Mainpage";
-import Detailpage2 from "./pages/detailpage/Detailpage2";
+import Detailpage from "./pages/detailpage/Detailpage";
 import axios from "axios";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     fetchcampingData();
-  });
+  },[]);
 
   const onSearch = (searchText) => {
 
@@ -87,7 +87,7 @@ function App() {
           onSearch={onSearch}
           onTag={onTag}
           />} />
-        <Route path="/detailpage2/:contentId" element={<Detailpage2 />} />
+        <Route path="/detailpage/:contentId" element={<Detailpage />} />
       </Routes>
     </BrowserRouter>
   );
